@@ -31,7 +31,7 @@ func close_panel() -> void:
 
 func _on_play_pressed() -> void:
 	if level_scene:
-		get_tree().change_scene_to_packed(level_scene)
+		get_tree().change_scene_to_file("res://level_scene.tscn")
 	else:
 		push_error("No level scene assigned in the Inspector!")
 

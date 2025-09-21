@@ -1,0 +1,50 @@
+[gd_scene load_steps=5 format=3 uid="uid://bumehbryqu4tm"]
+
+[ext_resource type="Texture2D" uid="uid://cvhcu431wm7qo" path="res://Assets/golfballtemp.png" id="1_4quuv"]
+[ext_resource type="PhysicsMaterial" uid="uid://mapb357dkdpi" path="res://Scenes/basic.tres" id="1_187gu"]
+[ext_resource type="PhysicsMaterial" uid="uid://bo1ubqo5cuk7a" path="res://Scenes/ball.tres" id="2_3mivm"]
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_187gu"]
+radius = 8.0
+
+[node name="Node2D" type="Node2D"]
+
+[node name="StaticBody2D" type="StaticBody2D" parent="."]
+physics_material_override = ExtResource("1_187gu")
+
+[node name="CollisionPolygon2D" type="CollisionPolygon2D" parent="StaticBody2D"]
+position = Vector2(780, 617)
+scale = Vector2(1.05392, 0.297815)
+polygon = PackedVector2Array(-821.689, -313.692, 498.949, -313.692, 502, 582, -822, 585)
+
+[node name="Polygon2D" type="Polygon2D" parent="StaticBody2D/CollisionPolygon2D"]
+color = Color(0.203499, 0.521476, 0.0650415, 1)
+polygon = PackedVector2Array(-823.592, -312.275, 499.089, -312.275, 501.936, 580.897, -821.695, 584.255, -821.695, -312.275)
+
+[node name="StaticBody2D2" type="StaticBody2D" parent="."]
+physics_material_override = ExtResource("1_187gu")
+
+[node name="CollisionPolygon2D" type="CollisionPolygon2D" parent="StaticBody2D2"]
+position = Vector2(-48, 220)
+scale = Vector2(0.0928775, 0.544204)
+polygon = PackedVector2Array(-834.788, -328.921, 516.81, -328.921, 516.81, 582.502, -822, 585)
+
+[node name="StaticBody2D3" type="StaticBody2D" parent="."]
+physics_material_override = ExtResource("1_187gu")
+
+[node name="CollisionPolygon2D" type="CollisionPolygon2D" parent="StaticBody2D3"]
+position = Vector2(1229, 228)
+scale = Vector2(0.0928775, 0.544204)
+polygon = PackedVector2Array(-829.048, -328.921, 507.707, -328.921, 502, 582, -829.048, 584.339)
+
+[node name="Ball" type="RigidBody2D" parent="."]
+position = Vector2(66, 415)
+physics_material_override = ExtResource("2_3mivm")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Ball"]
+shape = SubResource("CircleShape2D_187gu")
+
+[node name="Sprite2D" type="Sprite2D" parent="Ball"]
+position = Vector2(7.10543e-15, -7.10543e-15)
+scale = Vector2(0.05, 0.05)
+texture = ExtResource("1_4quuv")
