@@ -25,12 +25,16 @@ func _on_settings_pressed() -> void:
 	pause_panel.hide()
 	settings_panel.show()
 
+
 func _on_main_menu_pressed() -> void:
 	resume_game()
-	var scene_path = "res://Scenes/Menu.tscn"
-	get_tree().change_scene_to_file(scene_path)
-	
-	
+	get_tree().change_scene_to_file("res://Scenes/main_menu.tscn")
+
+
 func _on_close_settings_pressed() -> void:
 	settings_panel.hide()
 	pause_panel.show()
+
+
+func _on_pause_button_pressed() -> void:
+	pause_game()

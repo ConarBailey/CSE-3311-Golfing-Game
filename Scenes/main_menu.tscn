@@ -1,0 +1,163 @@
+[gd_scene load_steps=7 format=3 uid="uid://tjjgr0myl3h"]
+
+[ext_resource type="Script" uid="uid://yl1ocod265a3" path="res://Systems/main_menu.gd" id="1_o1pok"]
+[ext_resource type="PackedScene" uid="uid://brd6gh1y61osw" path="res://Scenes/level_scene.tscn" id="2_n45e2"]
+[ext_resource type="Theme" uid="uid://m68oylcsqvn" path="res://UI/main_panel_buttons.tres" id="3_nkmvg"]
+[ext_resource type="Theme" uid="uid://c75dpxet704r0" path="res://UI/panel_label.tres" id="4_igqy4"]
+[ext_resource type="PackedScene" uid="uid://cg4gnar65v0u6" path="res://Scenes/settings_panel.tscn" id="4_mc4e6"]
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_n45e2"]
+bg_color = Color(0, 0.38039216, 0.22352941, 1)
+
+[node name="MainMenu" type="Control"]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+script = ExtResource("1_o1pok")
+level_scene = ExtResource("2_n45e2")
+
+[node name="MainPanel" type="Panel" parent="."]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_styles/panel = SubResource("StyleBoxFlat_n45e2")
+
+[node name="Background" type="TextureRect" parent="MainPanel"]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+expand_mode = 1
+
+[node name="Buttons" type="VBoxContainer" parent="MainPanel"]
+layout_mode = 1
+anchors_preset = -1
+anchor_left = 0.1
+anchor_top = 0.5
+anchor_right = 0.1
+anchor_bottom = 0.5
+offset_top = -180.0
+offset_right = 291.0
+offset_bottom = 180.0
+grow_vertical = 2
+theme_override_constants/separation = 20
+
+[node name="Play" type="Button" parent="MainPanel/Buttons"]
+layout_mode = 2
+theme = ExtResource("3_nkmvg")
+text = "Play"
+
+[node name="Settings" type="Button" parent="MainPanel/Buttons"]
+layout_mode = 2
+theme = ExtResource("3_nkmvg")
+text = "Settings"
+
+[node name="Credits" type="Button" parent="MainPanel/Buttons"]
+layout_mode = 2
+theme = ExtResource("3_nkmvg")
+text = "Credits"
+
+[node name="Quit" type="Button" parent="MainPanel/Buttons"]
+layout_mode = 2
+theme = ExtResource("3_nkmvg")
+text = "Quit"
+
+[node name="Label" type="Label" parent="MainPanel"]
+layout_mode = 1
+anchors_preset = 10
+anchor_right = 1.0
+offset_top = 207.0
+offset_bottom = 664.0
+grow_horizontal = 2
+theme_override_font_sizes/font_size = 166
+text = "Golf Game
+"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="SettingsPanel" parent="." instance=ExtResource("4_mc4e6")]
+layout_mode = 1
+
+[node name="CreditsPanel" type="Panel" parent="."]
+visible = false
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="Background" type="TextureRect" parent="CreditsPanel"]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+expand_mode = 1
+
+[node name="CloseSettings" type="Button" parent="CreditsPanel"]
+custom_minimum_size = Vector2(100, 100)
+layout_mode = 0
+offset_right = 100.0
+offset_bottom = 100.0
+text = "X"
+
+[node name="Label" type="Label" parent="CreditsPanel"]
+layout_mode = 1
+anchors_preset = -1
+anchor_left = 0.5
+anchor_top = 0.05
+anchor_right = 0.5
+anchor_bottom = 0.05
+offset_left = -116.0
+offset_right = 116.0
+offset_bottom = 83.0
+grow_horizontal = 2
+theme = ExtResource("4_igqy4")
+text = "This game was possible
+because of..."
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="HBoxContainer" type="HBoxContainer" parent="CreditsPanel"]
+layout_mode = 0
+offset_left = 520.0
+offset_top = 353.0
+offset_right = 2051.0
+offset_bottom = 906.0
+
+[node name="Label2" type="Label" parent="CreditsPanel/HBoxContainer"]
+layout_mode = 2
+size_flags_horizontal = 3
+size_flags_vertical = 1
+theme_override_font_sizes/font_size = 78
+text = "Conar Bailey
+David Wilbanks
+Joshua Mora"
+
+[node name="Label" type="Label" parent="CreditsPanel/HBoxContainer"]
+layout_mode = 2
+size_flags_horizontal = 3
+size_flags_vertical = 1
+theme_override_font_sizes/font_size = 78
+text = "Mai Vi Doan
+Nnanna Ejim
+Vithin Reddy Sandadi"
+
+[connection signal="pressed" from="MainPanel/Buttons/Play" to="." method="_on_play_pressed"]
+[connection signal="pressed" from="MainPanel/Buttons/Settings" to="." method="_on_settings_pressed"]
+[connection signal="pressed" from="MainPanel/Buttons/Credits" to="." method="_on_credits_pressed"]
+[connection signal="pressed" from="MainPanel/Buttons/Quit" to="." method="_on_quit_pressed"]
+[connection signal="pressed" from="SettingsPanel/CloseSettings" to="." method="close_panel"]
+[connection signal="pressed" from="CreditsPanel/CloseSettings" to="." method="close_panel"]
+
+[editable path="SettingsPanel"]

@@ -1,0 +1,153 @@
+[gd_scene load_steps=9 format=3 uid="uid://brd6gh1y61osw"]
+
+[ext_resource type="Texture2D" uid="uid://c0icucgejvogm" path="res://Assets/golfballtemp.png" id="1_4quuv"]
+[ext_resource type="PhysicsMaterial" uid="uid://mapb357dkdpi" path="res://Scenes/basic.tres" id="1_187gu"]
+[ext_resource type="Script" uid="uid://d4na4m7sjaxg3" path="res://Systems/pause_menu.gd" id="1_lymix"]
+[ext_resource type="PhysicsMaterial" uid="uid://bo1ubqo5cuk7a" path="res://Scenes/ball.tres" id="2_3mivm"]
+[ext_resource type="Theme" uid="uid://m68oylcsqvn" path="res://UI/main_panel_buttons.tres" id="2_b7jio"]
+[ext_resource type="PackedScene" uid="uid://cg4gnar65v0u6" path="res://Scenes/settings_panel.tscn" id="3_c8y3w"]
+
+[sub_resource type="Theme" id="Theme_66tft"]
+Label/font_sizes/font_size = 60
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_187gu"]
+radius = 8.0
+
+[node name="Node2D" type="Node2D"]
+
+[node name="UI" type="CanvasLayer" parent="."]
+
+[node name="PauseButton" type="Button" parent="UI"]
+offset_left = 57.0
+offset_top = 36.0
+offset_right = 212.0
+offset_bottom = 191.0
+theme_override_font_sizes/font_size = 96
+text = "||"
+
+[node name="PauseMenu" type="Control" parent="UI"]
+process_mode = 3
+visible = false
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+script = ExtResource("1_lymix")
+
+[node name="PausePanel" type="Panel" parent="UI/PauseMenu"]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="Background" type="TextureRect" parent="UI/PauseMenu/PausePanel"]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+expand_mode = 1
+
+[node name="Label" type="Label" parent="UI/PauseMenu/PausePanel"]
+layout_mode = 1
+anchors_preset = -1
+anchor_left = 0.5
+anchor_top = 0.05
+anchor_right = 0.5
+anchor_bottom = 0.05
+offset_left = -105.5
+offset_right = 105.5
+offset_bottom = 83.0
+grow_horizontal = 2
+theme = SubResource("Theme_66tft")
+text = "Paused"
+
+[node name="VBoxContainer" type="VBoxContainer" parent="UI/PauseMenu/PausePanel"]
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -159.5
+offset_top = -132.5
+offset_right = 159.5
+offset_bottom = 132.5
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_constants/separation = 20
+
+[node name="Resume" type="Button" parent="UI/PauseMenu/PausePanel/VBoxContainer"]
+layout_mode = 2
+theme = ExtResource("2_b7jio")
+text = "Resume"
+
+[node name="Settings" type="Button" parent="UI/PauseMenu/PausePanel/VBoxContainer"]
+layout_mode = 2
+theme = ExtResource("2_b7jio")
+text = "Settings"
+
+[node name="MainMenu" type="Button" parent="UI/PauseMenu/PausePanel/VBoxContainer"]
+layout_mode = 2
+theme = ExtResource("2_b7jio")
+text = "Main Menu"
+
+[node name="SettingsPanel" parent="UI/PauseMenu" instance=ExtResource("3_c8y3w")]
+layout_mode = 1
+
+[node name="StaticBody2D" type="StaticBody2D" parent="."]
+physics_material_override = ExtResource("1_187gu")
+
+[node name="CollisionPolygon2D" type="CollisionPolygon2D" parent="StaticBody2D"]
+position = Vector2(-53, 719)
+scale = Vector2(1.05392, 0.297815)
+polygon = PackedVector2Array(-821.689, -313.692, -115.758, -315.632, 2006.79, -318.99, 2006.79, 582, -822, 585)
+
+[node name="Polygon2D" type="Polygon2D" parent="StaticBody2D/CollisionPolygon2D"]
+position = Vector2(91, -1.6)
+color = Color(0.203499, 0.521476, 0.0650415, 1)
+polygon = PackedVector2Array(-823.592, -312.275, 1934.68, -318.99, 1948.91, 580.897, -821.695, 584.255, -823.592, -312.274)
+
+[node name="StaticBody2D2" type="StaticBody2D" parent="."]
+physics_material_override = ExtResource("1_187gu")
+
+[node name="CollisionPolygon2D" type="CollisionPolygon2D" parent="StaticBody2D2"]
+position = Vector2(-647, 342)
+scale = Vector2(0.0928775, 0.544204)
+polygon = PackedVector2Array(-834.788, -328.921, 516.81, -328.921, 516.81, 582.502, -822, 585)
+
+[node name="StaticBody2D3" type="StaticBody2D" parent="."]
+physics_material_override = ExtResource("1_187gu")
+
+[node name="CollisionPolygon2D" type="CollisionPolygon2D" parent="StaticBody2D3"]
+position = Vector2(1883, 302)
+scale = Vector2(0.0928775, 0.544204)
+polygon = PackedVector2Array(-861.35, -328.921, 507.707, -328.921, 484.51, 698.268, -861.35, 694.593)
+
+[node name="Ball" type="RigidBody2D" parent="."]
+position = Vector2(-102, 294)
+physics_material_override = ExtResource("2_3mivm")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Ball"]
+shape = SubResource("CircleShape2D_187gu")
+
+[node name="Sprite2D" type="Sprite2D" parent="Ball"]
+position = Vector2(7.10543e-15, -7.10543e-15)
+scale = Vector2(0.05, 0.05)
+texture = ExtResource("1_4quuv")
+
+[node name="Camera2D" type="Camera2D" parent="."]
+position = Vector2(602, 271)
+
+[connection signal="pressed" from="UI/PauseButton" to="UI/PauseMenu" method="_on_pause_button_pressed"]
+[connection signal="pressed" from="UI/PauseMenu/PausePanel/VBoxContainer/Resume" to="UI/PauseMenu" method="_on_resume_pressed"]
+[connection signal="pressed" from="UI/PauseMenu/PausePanel/VBoxContainer/Settings" to="UI/PauseMenu" method="_on_settings_pressed"]
+[connection signal="pressed" from="UI/PauseMenu/PausePanel/VBoxContainer/MainMenu" to="UI/PauseMenu" method="_on_main_menu_pressed"]
+[connection signal="pressed" from="UI/PauseMenu/SettingsPanel/CloseSettings" to="UI/PauseMenu" method="_on_close_settings_pressed"]
+
+[editable path="UI/PauseMenu/SettingsPanel"]

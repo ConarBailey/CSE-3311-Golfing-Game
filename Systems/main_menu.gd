@@ -6,17 +6,6 @@ extends Control
 @onready var settings_panel: Panel = $SettingsPanel
 @onready var credits_panel: Panel = $CreditsPanel
 
-
-func _ready() -> void:
-	pass
-		
-func _process(delta: float) -> void:
-	pass
-	
-func _input(event):
-	pass
-		
-		
 func show_panel(target_panel : Panel) -> void:
 	main_panel.hide()
 	settings_panel.hide()
@@ -30,10 +19,7 @@ func close_panel() -> void:
 
 
 func _on_play_pressed() -> void:
-	if level_scene:
-		get_tree().change_scene_to_file("res://level_scene.tscn")
-	else:
-		push_error("No level scene assigned in the Inspector!")
+	get_tree().change_scene_to_packed(level_scene)
 
 
 func _on_settings_pressed() -> void:
