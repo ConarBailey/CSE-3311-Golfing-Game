@@ -2,6 +2,8 @@ extends RigidBody2D
 
 signal strokesChange(st)
 signal time
+signal cameraChange(x,y)
+signal updateText(stri)
 @export var speed = 1000
 @export var shotEnable = 25
 @export var maxforce = 60000
@@ -33,9 +35,20 @@ func _input(event: InputEvent) -> void:
 func _on_right_body_exited(_body: Node2D) -> void:
 	linear_velocity.x = 0
 	linear_velocity.y = 0
+	angular_velocity = 0
 	global_position.x = startingx
 	global_position.y = startingy
 	##print("out of bounds detected")
 
 func _on_timer_timeout() -> void:
 	TimerEnable = true
+
+func _on_hole_1_body_entered(_body: RigidBody2D) -> void:
+	##print("Strokes - " + str(strokes))
+	updateText.emit("Hole 2\nPar 3\nStrokes - 0")
+	startingx = 2145
+	startingy = 550
+	global_position.x = 2145
+	global_position.y = 500
+	strokes = 0
+	cameraChange.emit(3135,290)
