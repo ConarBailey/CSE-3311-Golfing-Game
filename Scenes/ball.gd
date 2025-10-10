@@ -12,6 +12,16 @@ var startingx = 0
 var startingy = 0
 var TimerEnable = true
 
+func _moveBallTo(x: int,y: int) -> void:
+	startingx = x
+	startingy = y
+	global_position.x = x
+	global_position.y = y
+	strokes = 0
+	linear_velocity.x = 0
+	linear_velocity.y = 0
+	angular_velocity = 0
+
 func _input(event: InputEvent) -> void:
 	if event is InputEventMouseButton and not event.pressed and (linear_velocity.x < shotEnable and linear_velocity.y < shotEnable) and TimerEnable:
 		startingx = global_position.x
@@ -43,12 +53,51 @@ func _on_right_body_exited(_body: Node2D) -> void:
 func _on_timer_timeout() -> void:
 	TimerEnable = true
 
-func _on_hole_1_body_entered(_body: RigidBody2D) -> void:
+func _on_hole_1_body_entered(body: Node2D) -> void:
 	##print("Strokes - " + str(strokes))
-	updateText.emit("Hole 2\nPar 3\nStrokes - 0")
-	startingx = 2145
-	startingy = 550
-	global_position.x = 2145
-	global_position.y = 500
-	strokes = 0
-	cameraChange.emit(3135,290)
+	if(body is RigidBody2D):
+		updateText.emit("Hole 2\nPar - 3\nStrokes - 0")
+		_moveBallTo(2145,500)
+		cameraChange.emit(3135,290)
+
+func _on_hole_2_body_entered(body: Node2D) -> void:
+	if(body is RigidBody2D):
+		updateText.emit("Hole 3\nPar - 5\nStrokes - 0")
+		_moveBallTo(4705,550)
+		cameraChange.emit(5725,290)
+
+func _on_hole_3_body_entered(body: Node2D) -> void:
+	if(body is RigidBody2D):
+		updateText.emit("Hole 4\nPar - 4\nStrokes - 0")
+		_moveBallTo(7325,220)
+		cameraChange.emit(8350,290)
+
+func _on_hole_4_body_entered(body: Node2D) -> void:
+	if(body is RigidBody2D):
+		updateText.emit("Hole 5\nPar - 5\nStrokes - 0")
+		_moveBallTo(9950,20)
+		cameraChange.emit(10975,290)
+
+func _on_hole_5_body_entered(body: Node2D) -> void:
+	if(body is RigidBody2D):
+		updateText.emit("Hole 6\nPar - 5\nStrokes - 0")
+		cameraChange.emit(13585,290)
+
+func _on_hole_6_body_entered(body: Node2D) -> void:
+	if(body is RigidBody2D):
+		updateText.emit("Hole 7\nPar - 5\nStrokes - 0")
+		cameraChange.emit(16195,290)
+
+func _on_hole_7_body_entered(body: Node2D) -> void:
+	if(body is RigidBody2D):
+		updateText.emit("Hole 8\nPar - 5\nStrokes - 0")
+		cameraChange.emit(18805,290)
+
+func _on_hole_8_body_entered(body: Node2D) -> void:
+	if(body is RigidBody2D):
+		updateText.emit("Hole 9\nPar - 5\nStrokes - 0")
+		cameraChange.emit(21415,290)
+
+func _on_hole_9_body_entered(body: Node2D) -> void:
+	if(body is RigidBody2D):
+		updateText.emit("Level Pack Complete!")
