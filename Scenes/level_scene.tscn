@@ -1,6 +1,7 @@
-[gd_scene load_steps=15 format=4 uid="uid://brd6gh1y61osw"]
+[gd_scene load_steps=16 format=4 uid="uid://brd6gh1y61osw"]
 
 [ext_resource type="Script" uid="uid://d4na4m7sjaxg3" path="res://Systems/pause_menu.gd" id="1_lymix"]
+[ext_resource type="Texture2D" uid="uid://d2ejbrslnck1b" path="res://Assets/pause-button.png" id="1_njln1"]
 [ext_resource type="PhysicsMaterial" uid="uid://bo1ubqo5cuk7a" path="res://Scenes/ball.tres" id="2_3mivm"]
 [ext_resource type="Theme" uid="uid://m68oylcsqvn" path="res://UI/main_panel_buttons.tres" id="2_b7jio"]
 [ext_resource type="PackedScene" uid="uid://cg4gnar65v0u6" path="res://Scenes/settings_panel.tscn" id="3_c8y3w"]
@@ -29,12 +30,17 @@ radius = 10.6666565
 [node name="UI" type="CanvasLayer" parent="."]
 
 [node name="PauseButton" type="Button" parent="UI"]
-offset_left = 57.0
-offset_top = 36.0
-offset_right = 212.0
-offset_bottom = 191.0
+anchors_preset = -1
+anchor_right = -0.03503323
+anchor_bottom = -0.08055556
+offset_left = 104.0
+offset_top = 99.0
+offset_right = 259.0
+offset_bottom = 254.0
 theme_override_font_sizes/font_size = 96
-text = "||"
+icon = ExtResource("1_njln1")
+flat = true
+expand_icon = true
 metadata/_edit_use_anchors_ = true
 
 [node name="PauseMenu" type="Control" parent="UI"]
@@ -264,6 +270,8 @@ position = Vector2(-417, 624)
 physics_material_override = ExtResource("2_3mivm")
 script = ExtResource("6_b7jio")
 speed = 500
+
+[node name="AimLine" type="Line2D" parent="Ball"]
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="Ball"]
 scale = Vector2(1.5, 1.5)
