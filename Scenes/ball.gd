@@ -4,6 +4,8 @@ signal strokesChange(st)
 signal time
 signal cameraChange(x,y)
 signal updateText(stri)
+signal endGame(scoreInfo)
+
 @export var speed = 1000
 @export var shotEnable = 5
 @export var maxforce = 70000
@@ -108,6 +110,7 @@ func _on_hole_1_body_entered(body: Node2D) -> void:
 		StrokesTotal[0] = strokes
 		_moveBallTo(2145,520)
 		cameraChange.emit(3135,290)
+	
 
 func _on_hole_2_body_entered(body: Node2D) -> void:
 	if(body is RigidBody2D):
@@ -115,6 +118,10 @@ func _on_hole_2_body_entered(body: Node2D) -> void:
 		StrokesTotal[1] = strokes
 		_moveBallTo(4705,550)
 		cameraChange.emit(5725,290)
+		
+		#So we can see the leaderboard during the DEMO 
+		endGame.emit(StrokesTotal)
+		
 
 func _on_hole_3_body_entered(body: Node2D) -> void:
 	if(body is RigidBody2D):
@@ -165,6 +172,8 @@ func _on_hole_9_body_entered(body: Node2D) -> void:
 		for i in StrokesTotal:
 			sum += i
 		updateText.emit("Level Pack\n Complete!\nTotal Strokes\n" + str(sum))
+		endGame.emit(StrokesTotal)
+	
 
 func _restart_level():
 	# Work In Progress

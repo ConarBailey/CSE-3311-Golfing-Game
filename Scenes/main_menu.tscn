@@ -7,7 +7,7 @@
 [ext_resource type="Theme" uid="uid://c75dpxet704r0" path="res://UI/panel_label.tres" id="4_igqy4"]
 [ext_resource type="PackedScene" uid="uid://cg4gnar65v0u6" path="res://Scenes/settings_panel.tscn" id="4_mc4e6"]
 [ext_resource type="Texture2D" uid="uid://lj5qyuohoh4b" path="res://Assets/hill-backdrop.png" id="5_cp0ys"]
-[ext_resource type="Script" uid="uid://dwqumcvq2toky" path="res://Scripts/text.gd" id="5_yhxw7"]
+[ext_resource type="Script" uid="uid://dwqumcvq2toky" path="res://Systems/Scripts/text.gd" id="5_yhxw7"]
 
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_cp0ys"]
 draw_center = false
@@ -89,7 +89,7 @@ grow_vertical = 2
 theme_override_constants/outline_size = 40
 theme_override_fonts/font = SubResource("SystemFont_yhxw7")
 theme_override_font_sizes/font_size = 140
-text = "Golf Game
+text = "Golf Frenzy
 "
 horizontal_alignment = 1
 vertical_alignment = 1
