@@ -1,6 +1,8 @@
 extends Control
 
-@export var level_scene : PackedScene
+
+const level2 = preload("res://Scenes/vithinlevelscene.tscn")
+const level1 = preload("res://Scenes/level_scene.tscn")
 
 @onready var main_panel: Panel = $MainPanel
 @onready var settings_panel: Panel = $SettingsPanel
@@ -19,7 +21,7 @@ func close_panel() -> void:
 
 
 func _on_play_pressed() -> void:
-	get_tree().change_scene_to_packed(level_scene)
+	get_tree().change_scene_to_packed(level2)
 
 
 func _on_settings_pressed() -> void:
