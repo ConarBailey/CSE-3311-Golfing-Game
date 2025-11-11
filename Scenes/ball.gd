@@ -110,6 +110,8 @@ func _on_hole_1_body_entered(body: Node2D) -> void:
 		StrokesTotal[0] = strokes
 		_moveBallTo(2145,520)
 		cameraChange.emit(3135,290)
+		
+		
 	
 
 func _on_hole_2_body_entered(body: Node2D) -> void:

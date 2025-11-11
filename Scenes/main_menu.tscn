@@ -1,13 +1,13 @@
 [gd_scene load_steps=11 format=4 uid="uid://tjjgr0myl3h"]
 
 [ext_resource type="Script" uid="uid://yl1ocod265a3" path="res://Systems/main_menu.gd" id="1_o1pok"]
-[ext_resource type="PackedScene" uid="uid://brd6gh1y61osw" path="res://Scenes/level_scene.tscn" id="2_n45e2"]
 [ext_resource type="Theme" uid="uid://m68oylcsqvn" path="res://UI/main_panel_buttons.tres" id="3_nkmvg"]
 [ext_resource type="TileSet" uid="uid://befm60u0hg213" path="res://Scenes/TileSetBase.tres" id="3_opfnp"]
 [ext_resource type="Theme" uid="uid://c75dpxet704r0" path="res://UI/panel_label.tres" id="4_igqy4"]
 [ext_resource type="PackedScene" uid="uid://cg4gnar65v0u6" path="res://Scenes/settings_panel.tscn" id="4_mc4e6"]
 [ext_resource type="Texture2D" uid="uid://lj5qyuohoh4b" path="res://Assets/hill-backdrop.png" id="5_cp0ys"]
 [ext_resource type="Script" uid="uid://dwqumcvq2toky" path="res://Systems/Scripts/text.gd" id="5_yhxw7"]
+[ext_resource type="Script" uid="uid://bsxvs2avn3koy" path="res://Scenes/level_selector_script.gd" id="6_yhxw7"]
 
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_cp0ys"]
 draw_center = false
@@ -23,7 +23,6 @@ anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
 script = ExtResource("1_o1pok")
-level_scene = ExtResource("2_n45e2")
 
 [node name="MainPanel" type="Panel" parent="."]
 layout_mode = 1
@@ -118,6 +117,73 @@ scale = Vector2(4, 4)
 tile_map_data = PackedByteArray("AAD2/wsAAAAAAAEAAAD2/wwAAAABAAAAAAD3/woAAAAAAAAAAAD3/wsAAAABAAEAAAD3/wwAAAABAAEAAAD4/woAAAAAAAAAAAD4/wsAAAAAAAEAAAD4/wwAAAABAAEAAAD5/woAAAAAAAAAAAD5/wsAAAAAAAEAAAD5/wwAAAAAAAEAAAD6/woAAAAAAAAAAAD6/wsAAAAAAAEAAAD6/wwAAAABAAEAAAD7/woAAAAAAAAAAAD7/wsAAAAAAAEAAAD7/wwAAAAAAAEAAAD8/woAAAAAAAAAAAD8/wsAAAAAAAEAAAD8/wwAAAAAAAEAAAD9/woAAAAAAAAAAAD9/wsAAAAAAAEAAAD9/wwAAAAAAAEAAAD+/woAAAAAAAAAAAD+/wsAAAAAAAEAAAD+/wwAAAABAAEAAAD//woAAAAAAAAAAAD//wsAAAAAAAEAAAD//wwAAAAAAAEAAAAAAAoAAAAAAAAAAAAAAAsAAAAAAAEAAAAAAAwAAAAAAAEAAAABAAoAAAAAAAAAAAABAAsAAAAAAAEAAAABAAwAAAAAAAEAAAACAAoAAAAAAAAAAAACAAsAAAAAAAEAAAACAAwAAAAAAAEAAAADAAoAAAAAAAAAAAADAAsAAAABAAAAAAADAAwAAAAAAAEAAAAEAAoAAAAAAAAAAAAEAAsAAAABAAEAAAAEAAwAAAABAAAAAAAFAAoAAAAAAAAAAAAFAAsAAAAAAAEAAAAFAAwAAAAAAAEAAAAGAAsAAAABAAAAAAAGAAwAAAAAAAEAAAAHAAsAAAAAAAEAAAAHAAwAAAAAAAEAAAAIAAsAAAAAAAEAAAAIAAwAAAAAAAEAAAAJAAsAAAABAAAAAAAJAAwAAAAAAAEAAAAKAAsAAAAAAAEAAAAKAAwAAAABAAEAAAALAAsAAAAAAAEAAAALAAwAAAAAAAEAAAAMAAsAAAABAAEAAAAMAAwAAAAAAAEAAAANAAsAAAAAAAEAAAANAAwAAAAAAAEAAAAOAAsAAAAAAAEAAAAOAAwAAAAAAAEAAAAPAAsAAAABAAEAAAAPAAwAAAABAAEAAAAQAAsAAAAAAAEAAAAQAAwAAAABAAAAAAARAAsAAAAAAAEAAAARAAwAAAAAAAEAAAASAAsAAAAAAAEAAAASAAwAAAAAAAEAAAATAAsAAAAAAAEAAAATAAwAAAAAAAEAAAAUAAsAAAAAAAEAAAAUAAwAAAABAAAAAAAVAAsAAAAAAAEAAAAVAAwAAAAAAAEAAAAWAAsAAAAAAAEAAAAWAAwAAAAAAAEAAAAXAAsAAAAAAAEAAAAXAAwAAAAAAAEAAAAYAAsAAAABAAAAAAAYAAwAAAAAAAEAAAAZAAsAAAAAAAEAAAAZAAwAAAAAAAEAAAAaAAsAAAAAAAEAAAAaAAwAAAAAAAEAAAAbAAsAAAAAAAEAAAAbAAwAAAAAAAEAAAAcAAsAAAAAAAEAAAAcAAwAAAABAAAAAAAGAAoAAAAAAAAAAAAHAAoAAAAAAAAAAAAIAAoAAAAAAAAAAAAJAAoAAAAAAAAAAAAKAAoAAAAAAAAAAAALAAoAAAAAAAAAAAAMAAoAAAAAAAAAAAANAAoAAAAAAAAAAAAOAAoAAAAAAAAAAAAPAAoAAAAAAAAAAAAQAAoAAAAAAAAAAAARAAoAAAAAAAAAAAASAAoAAAAAAAAAAAATAAoAAAAAAAAAAAAUAAoAAAAAAAAAAAAVAAoAAAAAAAAAAAAWAAoAAAAAAAAAAAAXAAoAAAAAAAAAAAAYAAoAAAAAAAAAAAAZAAoAAAAAAAAAAAAaAAoAAAAAAAAAAAAbAAoAAAAAAAAAAAAcAAoAAAAAAAAAAAD2/woAAAAAAAAAAAAdAAoAAAAAAAAAAAAdAAsAAAAAAAEAAAAdAAwAAAAAAAEAAAA=")
 tile_set = ExtResource("3_opfnp")
 
+[node name="LevelSelectorPanel" type="Panel" parent="."]
+layout_mode = 1
+anchors_preset = 14
+anchor_top = 0.5
+anchor_right = 1.0
+anchor_bottom = 0.5
+offset_left = 549.0
+offset_top = -372.0
+offset_right = -549.0
+offset_bottom = 347.0
+grow_horizontal = 2
+grow_vertical = 2
+script = ExtResource("6_yhxw7")
+
+[node name="Background" type="TextureRect" parent="LevelSelectorPanel"]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+expand_mode = 1
+
+[node name="CloseWindow" type="Button" parent="LevelSelectorPanel"]
+custom_minimum_size = Vector2(100, 100)
+layout_mode = 0
+offset_right = 100.0
+offset_bottom = 100.0
+text = "X"
+
+[node name="Label" type="Label" parent="LevelSelectorPanel"]
+layout_mode = 1
+anchors_preset = -1
+anchor_left = 0.5
+anchor_top = 0.05
+anchor_right = 0.5
+anchor_bottom = 0.05
+offset_left = -116.0
+offset_right = 116.0
+offset_bottom = 83.0
+grow_horizontal = 2
+theme = ExtResource("4_igqy4")
+text = "Select a Level"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="LevelContainer" type="VBoxContainer" parent="LevelSelectorPanel"]
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -258.0
+offset_top = -212.0
+offset_right = 258.0
+offset_bottom = 212.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="StarterButton" type="Button" parent="LevelSelectorPanel/LevelContainer"]
+custom_minimum_size = Vector2(200, 100)
+layout_mode = 2
+theme_override_font_sizes/font_size = 40
+text = "Level 1
+"
+
 [node name="SettingsPanel" parent="." instance=ExtResource("4_mc4e6")]
 layout_mode = 1
 
@@ -192,6 +258,7 @@ Vithin Reddy Sandadi"
 [connection signal="pressed" from="MainPanel/Buttons/Settings" to="." method="_on_settings_pressed"]
 [connection signal="pressed" from="MainPanel/Buttons/Credits" to="." method="_on_credits_pressed"]
 [connection signal="pressed" from="MainPanel/Buttons/Quit" to="." method="_on_quit_pressed"]
+[connection signal="pressed" from="LevelSelectorPanel/CloseWindow" to="." method="close_panel"]
 [connection signal="pressed" from="SettingsPanel/CloseSettings" to="." method="close_panel"]
 [connection signal="pressed" from="CreditsPanel/CloseSettings" to="." method="close_panel"]
 

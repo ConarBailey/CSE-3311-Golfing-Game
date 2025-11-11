@@ -80,3 +80,7 @@ func _on_submit_pressed() -> void:
 	]
 
 	_build_entries()
+
+
+func _on_close_leaderboard_pressed() -> void:
+	hide()

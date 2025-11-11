@@ -3,15 +3,14 @@ extends Control
 
 @onready var score_results: Label = $Panel/ScoreResults
 @onready var leaderboard: Node2D = $Leaderboard
+@onready var game_control: Node2D = $"../.."
+
 var score_text = ""
 
 # Called when the node enters the scene tree for the first time.
 func _ready() -> void:
 	hide()
 
-# Called every frame. 'delta' is the elapsed time since the previous frame.
-func _process(delta: float) -> void:
-	pass
 
 func end_game(stroke_totals: Array, hole_pars: Array, user_score: String) -> void:
 	self.show()
@@ -40,3 +39,12 @@ func end_game(stroke_totals: Array, hole_pars: Array, user_score: String) -> voi
 
 func _on_leaderboard_pressed() -> void:
 	leaderboard.show()
+
+
+func _on_next_level_pressed() -> void:
+	game_control._next_level()
+
+func _on_main_menu_pressed() -> void:
+	self.hide()
+	get_tree().paused = false
+	get_tree().change_scene_to_file("res://Scenes/main_menu.tscn")

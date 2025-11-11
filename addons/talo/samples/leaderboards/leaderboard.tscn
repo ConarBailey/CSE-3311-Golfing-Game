@@ -86,4 +86,12 @@ theme = ExtResource("2_aw1ey")
 theme_override_font_sizes/font_size = 36
 text = "Add entry"
 
+[node name="CloseLeaderboard" type="Button" parent="UI"]
+custom_minimum_size = Vector2(100, 100)
+layout_mode = 0
+offset_right = 100.0
+offset_bottom = 100.0
+text = "X"
+
 [connection signal="pressed" from="UI/MarginContainer/VBoxContainer/Submit" to="." method="_on_submit_pressed"]
+[connection signal="pressed" from="UI/CloseLeaderboard" to="." method="_on_close_leaderboard_pressed"]

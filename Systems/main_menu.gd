@@ -1,12 +1,9 @@
 extends Control
 
-
-const level2 = preload("res://Scenes/vithinlevelscene.tscn")
-const level1 = preload("res://Scenes/level_scene.tscn")
-
 @onready var main_panel: Panel = $MainPanel
 @onready var settings_panel: Panel = $SettingsPanel
 @onready var credits_panel: Panel = $CreditsPanel
+@onready var level_selector_panel: Panel = $LevelSelectorPanel
 
 func show_panel(target_panel : Panel) -> void:
 	main_panel.hide()
@@ -17,11 +14,14 @@ func show_panel(target_panel : Panel) -> void:
 func close_panel() -> void:
 	settings_panel.hide()
 	credits_panel.hide()
+	level_selector_panel.hide()
+	
 	main_panel.show()
 
 
 func _on_play_pressed() -> void:
-	get_tree().change_scene_to_packed(level2)
+	show_panel(level_selector_panel)
+	
 
 
 func _on_settings_pressed() -> void:

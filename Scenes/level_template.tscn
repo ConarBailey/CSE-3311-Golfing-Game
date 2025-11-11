@@ -1,8 +1,8 @@
 [gd_scene load_steps=5 format=3 uid="uid://bk01db05toy0a"]
 
-[ext_resource type="Script" uid="uid://d4na4m7sjaxg3" path="res://Systems/pause_menu.gd" id="1_hfsxx"]
-[ext_resource type="Theme" uid="uid://m68oylcsqvn" path="res://UI/main_panel_buttons.tres" id="1_shi5l"]
-[ext_resource type="PackedScene" uid="uid://cg4gnar65v0u6" path="res://Scenes/settings_panel.tscn" id="3_4mbhc"]
+[ext_resource type="Script" uid="uid://d4na4m7sjaxg3" path="res://Systems/pause_menu.gd" id="1_t7h1v"]
+[ext_resource type="Theme" uid="uid://m68oylcsqvn" path="res://UI/main_panel_buttons.tres" id="2_e06xn"]
+[ext_resource type="PackedScene" uid="uid://cg4gnar65v0u6" path="res://Scenes/settings_panel.tscn" id="3_e273j"]
 
 [sub_resource type="Theme" id="Theme_t4rri"]
 Label/font_sizes/font_size = 60
@@ -19,7 +19,7 @@ anchor_right = 1.0
 anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
-script = ExtResource("1_hfsxx")
+script = ExtResource("1_t7h1v")
 
 [node name="PausePanel" type="Panel" parent="UI/PauseMenu"]
 layout_mode = 1
@@ -69,20 +69,20 @@ theme_override_constants/separation = 20
 
 [node name="Resume" type="Button" parent="UI/PauseMenu/PausePanel/VBoxContainer"]
 layout_mode = 2
-theme = ExtResource("1_shi5l")
+theme = ExtResource("2_e06xn")
 text = "Resume"
 
 [node name="Settings" type="Button" parent="UI/PauseMenu/PausePanel/VBoxContainer"]
 layout_mode = 2
-theme = ExtResource("1_shi5l")
+theme = ExtResource("2_e06xn")
 text = "Settings"
 
 [node name="MainMenu" type="Button" parent="UI/PauseMenu/PausePanel/VBoxContainer"]
 layout_mode = 2
-theme = ExtResource("1_shi5l")
+theme = ExtResource("2_e06xn")
 text = "Main Menu"
 
-[node name="SettingsPanel" parent="UI/PauseMenu" instance=ExtResource("3_4mbhc")]
+[node name="SettingsPanel" parent="UI/PauseMenu" instance=ExtResource("3_e273j")]
 layout_mode = 1
 
 [connection signal="pressed" from="UI/PauseMenu/PausePanel/VBoxContainer/Resume" to="UI/PauseMenu" method="_on_resume_pressed"]
