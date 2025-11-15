@@ -12,6 +12,8 @@ signal endGame(scoreInfo)
 var strokes = 0
 var startingx = 0
 var startingy = 0
+var prevgrav = 1
+var prevforce = Vector2(0,0)
 var TimerEnable = true
 var StrokesTotal = [0,0,0,0,0,0,0,0,0]
 
@@ -61,6 +63,8 @@ func _input(event: InputEvent) -> void:
 			if is_aiming and linear_velocity.length() < shotEnable and TimerEnable:
 				startingx = global_position.x
 				startingy = global_position.y
+				prevgrav = gravity_scale
+				prevforce = constant_force
 				var force = (position - get_global_mouse_position())*speed
 				if force.x > maxforce:
 					force.x = maxforce
