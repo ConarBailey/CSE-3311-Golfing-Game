@@ -54,7 +54,7 @@ func _input(event: InputEvent) -> void:
 		if event.pressed:
 			if linear_velocity.length() < shotEnable and TimerEnable:
 				is_aiming = true
-				aim_start_pos = global_position
+				aim_start_pos = position
 
 		# Release - shoot
 		else:
@@ -120,10 +120,6 @@ func _on_hole_2_body_entered(body: Node2D) -> void:
 		StrokesTotal[1] = strokes
 		_moveBallTo(4705,550)
 		cameraChange.emit(5725,290)
-		
-		#So we can see the leaderboard during the DEMO 
-		endGame.emit(StrokesTotal)
-		
 
 func _on_hole_3_body_entered(body: Node2D) -> void:
 	if(body is RigidBody2D):

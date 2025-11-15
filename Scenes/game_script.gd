@@ -16,6 +16,7 @@ var LevelPars = {
 const LEVEL_SCENES = {
 	"Level 1": "res://Scenes/level_1.tscn",
 	"Level 2": "res://Scenes/level_2.tscn",
+	"Level 3": "res://Scenes/level_3.tscn",
 }
 
 func _ready() -> void:
