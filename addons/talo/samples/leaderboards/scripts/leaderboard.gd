@@ -9,7 +9,7 @@ var entry_scene = preload("res://addons/talo/samples/leaderboards/entry.tscn")
 @onready var entries_container: VBoxContainer = %Entries
 @onready var info_label: Label = %InfoLabel
 @onready var username: TextEdit = %Username
-@onready var filter_button: Button = %Filter
+#@onready var filter_button: Button = %Filter
 @onready var gameControl: Node2D = $"../../.."
 
 var _entries_error: bool

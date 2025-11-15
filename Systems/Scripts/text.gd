@@ -10,7 +10,7 @@ func _ready() -> void:
 	initial_y_position = position.y
 	start_time = Time.get_ticks_msec() / 1000.0 
 
-func _process(delta: float) -> void:
+func _process(_delta: float) -> void:
 	var elapsed_time = (Time.get_ticks_msec() / 1000.0) - start_time
 
 	var sine_wave_offset = amplitude * sin(frequency * elapsed_time)

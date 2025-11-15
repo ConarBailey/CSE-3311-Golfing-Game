@@ -1,6 +1,6 @@
 extends Node2D
 
-@onready var score_results: Label = $PausePanel/ScoreResults
+#@onready var score_results: Label = $PausePanel/ScoreResults
 @onready var end_game_menu: Control = $UI/EndGameMenu
 @onready var ball: RigidBody2D = $Ball
 
@@ -17,11 +17,11 @@ const LEVEL_SCENES = {
 	"Level 1": "res://Scenes/level_1.tscn",
 	"Level 2": "res://Scenes/level_2.tscn",
 	"Level 3": "res://Scenes/level_3.tscn",
+	"Level E": "res://Scenes/level_E.tscn",
 }
 
 func _ready() -> void:
 	level = _get_current_level_name()
-	ball.endGame.connect(_on_ball_end_game)
 
 func _get_current_level_name() -> String:
 	var file_name = get_tree().current_scene.scene_file_path.get_file().get_basename()

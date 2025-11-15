@@ -108,58 +108,73 @@ func _on_hole_1_body_entered(body: Node2D) -> void:
 	if(body is RigidBody2D):
 		updateText.emit("Hole 2\nPar - 3\nStrokes - 0")
 		StrokesTotal[0] = strokes
-		_moveBallTo(2075,350)
+		_moveBallTo(2080,470)
 		cameraChange.emit(3135,290)
-	
+		constant_force = Vector2(0,0)
+		gravity_scale = 1
 
 func _on_hole_2_body_entered(body: Node2D) -> void:
 	if(body is RigidBody2D):
 		updateText.emit("Hole 3\nPar - 5\nStrokes - 0")
 		StrokesTotal[1] = strokes
-		_moveBallTo(4725,540)
+		_moveBallTo(4640,470)
 		cameraChange.emit(5725,290)
+		constant_force = Vector2(0,0)
+		gravity_scale = 1
 
 func _on_hole_3_body_entered(body: Node2D) -> void:
 	if(body is RigidBody2D):
 		updateText.emit("Hole 4\nPar - 4\nStrokes - 0")
 		StrokesTotal[2] = strokes
-		_moveBallTo(7275,25)
+		_moveBallTo(7325,150)
 		cameraChange.emit(8350,290)
+		constant_force = Vector2(0,0)
+		gravity_scale = 1
 
 func _on_hole_4_body_entered(body: Node2D) -> void:
 	if(body is RigidBody2D):
 		updateText.emit("Hole 5\nPar - 5\nStrokes - 0")
 		StrokesTotal[3] = strokes
-		_moveBallTo(9900,25)
+		_moveBallTo(9855,210)
 		cameraChange.emit(10975,290)
+		constant_force = Vector2(0,0)
+		gravity_scale = 1
 
 func _on_hole_5_body_entered(body: Node2D) -> void:
 	if(body is RigidBody2D):
 		updateText.emit("Hole 6\nPar - 6\nStrokes - 0")
 		StrokesTotal[4] = strokes
-		_moveBallTo(12500,525)
+		_moveBallTo(12475,400)
 		cameraChange.emit(13600,290)
+		constant_force = Vector2(0,0)
+		gravity_scale = 1
 
 func _on_hole_6_body_entered(body: Node2D) -> void:
 	if(body is RigidBody2D):
 		updateText.emit("Hole 7\nPar - 6\nStrokes - 0")
 		StrokesTotal[5] = strokes
-		_moveBallTo(15130,410)
+		_moveBallTo(15265,530)
 		cameraChange.emit(16220,290)
+		constant_force = Vector2(0,0)
+		gravity_scale = 1
 
 func _on_hole_7_body_entered(body: Node2D) -> void:
 	if(body is RigidBody2D):
 		updateText.emit("Hole 8\nPar - 10\nStrokes - 0")
 		StrokesTotal[6] = strokes
-		_moveBallTo(17825,50)
+		_moveBallTo(17750,600)
 		cameraChange.emit(18825,290)
+		constant_force = Vector2(0,0)
+		gravity_scale = 1
 
 func _on_hole_8_body_entered(body: Node2D) -> void:
 	if(body is RigidBody2D):
 		updateText.emit("Hole 9\nPar - 6\nStrokes - 0")
 		StrokesTotal[7] = strokes
-		_moveBallTo(20375,450)
+		_moveBallTo(20320,80)
 		cameraChange.emit(21475,290)
+		constant_force = Vector2(0,0)
+		gravity_scale = 1
 
 func _on_hole_9_body_entered(body: Node2D) -> void:
 	if(body is RigidBody2D):
@@ -169,7 +184,6 @@ func _on_hole_9_body_entered(body: Node2D) -> void:
 			sum += i
 		updateText.emit("Level Pack\n Complete!\nTotal Strokes\n" + str(sum))
 		endGame.emit(StrokesTotal)
-	
 
 func _restart_level():
 	# Work In Progress
@@ -180,3 +194,29 @@ func _restart_level():
 	angular_velocity = 0
 	strokes = 0
 	strokesChange.emit(strokes)
+
+func _on_left_push_body_entered(body: Node2D) -> void:
+	if(body is RigidBody2D):
+		constant_force = Vector2(-980,0)
+		gravity_scale = 0
+
+func _on_right_push_body_entered(body: Node2D) -> void:
+	if(body is RigidBody2D):
+		constant_force = Vector2(980,0)
+		gravity_scale = 0
+
+func _on_down_push_body_entered(body: Node2D) -> void:
+	if(body is RigidBody2D):
+		constant_force = Vector2(0,0)
+		gravity_scale = 1
+
+func _on_up_push_body_entered(body: Node2D) -> void:
+	if(body is RigidBody2D):
+		constant_force = Vector2(0,0)
+		gravity_scale = -1
+
+func _on_no_grav_body_entered(body: Node2D) -> void:
+	if(body is RigidBody2D):
+		constant_force = Vector2(0,0)
+		gravity_scale = 0
+		

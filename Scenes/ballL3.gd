@@ -26,7 +26,7 @@ func _ready():
 	aim_line = $AimLine
 	aim_line.clear_points()
 
-func _physics_process(delta: float) -> void:
+func _physics_process(_delta: float) -> void:
 	if linear_velocity.length() < 10:
 		linear_velocity = Vector2.ZERO
 		angular_velocity = 0

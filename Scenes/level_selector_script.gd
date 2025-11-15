@@ -4,6 +4,7 @@ const LEVELS = {
 	"Level 1 - Bumpy Plains": preload("res://Scenes/level_1.tscn"),
 	"Level 2 - Fungal Forest": preload("res://Scenes/level_2.tscn"),
 	"Level 3 - The Grand Desert": preload("res://Scenes/level_3.tscn"),
+	"Level EX - The Laboratory": preload("res://Scenes/level_E.tscn"),
 }
 
 @onready var level_container: VBoxContainer = $LevelContainer 
