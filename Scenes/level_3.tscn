@@ -1,4 +1,4 @@
-[gd_scene load_steps=21 format=4 uid="uid://ckbg2rdarxp61"]
+[gd_scene load_steps=25 format=4 uid="uid://ckbg2rdarxp61"]
 
 [ext_resource type="Texture2D" uid="uid://d2ejbrslnck1b" path="res://Assets/pause-button.png" id="1_yxeeh"]
 [ext_resource type="Script" uid="uid://d4na4m7sjaxg3" path="res://Systems/pause_menu.gd" id="2_grd23"]
@@ -6,7 +6,9 @@
 [ext_resource type="PackedScene" uid="uid://cg4gnar65v0u6" path="res://Scenes/settings_panel.tscn" id="4_cgtw4"]
 [ext_resource type="Script" uid="uid://byd3yobpdyute" path="res://Scenes/GameScripts/hole_info.gd" id="5_v2k5r"]
 [ext_resource type="TileSet" uid="uid://befm60u0hg213" path="res://Scenes/TileSetBase.tres" id="6_1ttmx"]
+[ext_resource type="Script" uid="uid://bidsrthrmtgyh" path="res://Scenes/GameScripts/end_game_menu.gd" id="6_j77fg"]
 [ext_resource type="PhysicsMaterial" uid="uid://bo1ubqo5cuk7a" path="res://Scenes/Physics Materials/ball.tres" id="7_ifea5"]
+[ext_resource type="PackedScene" uid="uid://10aipp4jmgtd" path="res://addons/talo/samples/leaderboards/leaderboard.tscn" id="7_ki8bc"]
 [ext_resource type="PhysicsMaterial" uid="uid://bairjw2o5is8v" path="res://Scenes/Physics Materials/level3terrainmat.tres" id="7_n4vm5"]
 [ext_resource type="Texture2D" uid="uid://qagklr18ino5" path="res://Assets/world_tileset.png" id="8_fxnjf"]
 [ext_resource type="Texture2D" uid="uid://bg6f1q7q4icfu" path="res://Assets/golfball2.png" id="9_6yasg"]
@@ -16,6 +18,12 @@
 [ext_resource type="Script" uid="uid://dwtpb4w34aaeu" path="res://Scenes/GameScripts/holes.gd" id="13_xjeco"]
 
 [sub_resource type="Theme" id="Theme_66tft"]
+Label/font_sizes/font_size = 60
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_nbwsh"]
+bg_color = Color(0.19607843, 0.45882353, 0.26666668, 1)
+
+[sub_resource type="Theme" id="Theme_kgmqw"]
 Label/font_sizes/font_size = 60
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_c8y3w"]
@@ -361,6 +369,20 @@ flat = true
 expand_icon = true
 metadata/_edit_use_anchors_ = true
 
+[node name="HoleInfo" type="Label" parent="UI"]
+anchors_preset = -1
+anchor_left = -0.0233333
+anchor_bottom = 0.0833333
+offset_left = 2107.0
+offset_top = 879.0
+offset_right = 2366.0
+offset_bottom = 1051.0
+theme_override_font_sizes/font_size = 36
+text = "Hole Info Text"
+horizontal_alignment = 1
+script = ExtResource("5_v2k5r")
+metadata/_edit_use_anchors_ = true
+
 [node name="PauseMenu" type="Control" parent="UI"]
 process_mode = 3
 visible = false
@@ -436,21 +458,120 @@ text = "Main Menu"
 [node name="SettingsPanel" parent="UI/PauseMenu" instance=ExtResource("4_cgtw4")]
 layout_mode = 1
 
-[node name="HoleInfo" type="Label" parent="UI"]
-anchors_preset = -1
-anchor_left = -0.0233333
-anchor_bottom = 0.0833333
-offset_left = 2107.0
-offset_top = 879.0
-offset_right = 2366.0
-offset_bottom = 1051.0
-theme_override_font_sizes/font_size = 36
-text = "Hole 1
-Par - 3
-Strokes  - 0"
+[node name="EndGameMenu" type="Control" parent="UI"]
+process_mode = 3
+visible = false
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+script = ExtResource("6_j77fg")
+
+[node name="Background" type="ColorRect" parent="UI/EndGameMenu"]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+mouse_filter = 2
+mouse_behavior_recursive = 1
+color = Color(0.16078432, 0.15686275, 0.16078432, 0.4627451)
+
+[node name="Panel" type="Panel" parent="UI/EndGameMenu"]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_left = 583.0
+offset_top = 76.0
+offset_right = -583.0
+offset_bottom = -76.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_styles/panel = SubResource("StyleBoxFlat_nbwsh")
+
+[node name="Background" type="TextureRect" parent="UI/EndGameMenu/Panel"]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+expand_mode = 1
+
+[node name="ScoreLabel" type="Label" parent="UI/EndGameMenu/Panel"]
+layout_mode = 1
+anchors_preset = 10
+anchor_right = 1.0
+offset_top = 159.0
+offset_bottom = 357.0
+grow_horizontal = 2
+theme = SubResource("Theme_kgmqw")
+text = "Score:"
 horizontal_alignment = 1
-script = ExtResource("5_v2k5r")
-metadata/_edit_use_anchors_ = true
+vertical_alignment = 1
+
+[node name="ScoreResults" type="Label" parent="UI/EndGameMenu/Panel"]
+layout_mode = 1
+anchors_preset = 10
+anchor_right = 1.0
+offset_left = -1.0
+offset_top = 291.0
+offset_right = -1.0
+offset_bottom = 374.0
+grow_horizontal = 2
+theme = SubResource("Theme_kgmqw")
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="Label" type="Label" parent="UI/EndGameMenu/Panel"]
+layout_mode = 1
+anchors_preset = 10
+anchor_right = 1.0
+offset_bottom = 198.0
+grow_horizontal = 2
+theme = SubResource("Theme_kgmqw")
+text = "Level Complete"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="VBoxContainer" type="VBoxContainer" parent="UI/EndGameMenu/Panel"]
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -159.5
+offset_top = 14.0
+offset_right = 159.5
+offset_bottom = 279.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_constants/separation = 20
+alignment = 1
+
+[node name="NextLevel" type="Button" parent="UI/EndGameMenu/Panel/VBoxContainer"]
+layout_mode = 2
+theme = ExtResource("3_i22n0")
+text = "Next Level"
+
+[node name="Leaderboard" type="Button" parent="UI/EndGameMenu/Panel/VBoxContainer"]
+layout_mode = 2
+theme = ExtResource("3_i22n0")
+text = "Leaderboard"
+
+[node name="MainMenu" type="Button" parent="UI/EndGameMenu/Panel/VBoxContainer"]
+layout_mode = 2
+theme = ExtResource("3_i22n0")
+text = "Main Menu"
+
+[node name="Leaderboard" parent="UI/EndGameMenu" instance=ExtResource("7_ki8bc")]
+visible = false
+position = Vector2(673, 168)
 
 [node name="Bounds" type="Node" parent="."]
 
@@ -657,6 +778,9 @@ script = ExtResource("11_7n4l8")
 [connection signal="pressed" from="UI/PauseMenu/PausePanel/VBoxContainer/Settings" to="UI/PauseMenu" method="_on_settings_pressed"]
 [connection signal="pressed" from="UI/PauseMenu/PausePanel/VBoxContainer/MainMenu" to="UI/PauseMenu" method="_on_main_menu_pressed"]
 [connection signal="pressed" from="UI/PauseMenu/SettingsPanel/CloseSettings" to="UI/PauseMenu" method="_on_close_settings_pressed"]
+[connection signal="pressed" from="UI/EndGameMenu/Panel/VBoxContainer/NextLevel" to="UI/EndGameMenu" method="_on_next_level_pressed"]
+[connection signal="pressed" from="UI/EndGameMenu/Panel/VBoxContainer/Leaderboard" to="UI/EndGameMenu" method="_on_leaderboard_pressed"]
+[connection signal="pressed" from="UI/EndGameMenu/Panel/VBoxContainer/MainMenu" to="UI/EndGameMenu" method="_on_main_menu_pressed"]
 [connection signal="body_exited" from="Bounds/Right" to="Ball" method="_on_right_body_exited"]
 [connection signal="body_entered" from="Bounds/Holes" to="Ball" method="_on_holes_body_entered"]
 [connection signal="cameraChange" from="Ball" to="Camera" method="_on_ball_camera_change"]

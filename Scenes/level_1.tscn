@@ -63,9 +63,7 @@ offset_right = -2142.0
 offset_bottom = 1159.0
 grow_horizontal = 0
 theme_override_font_sizes/font_size = 36
-text = "Hole 1
-Par - 3
-Strokes  - 0"
+text = "Hole Info Text"
 horizontal_alignment = 1
 script = ExtResource("3_8i23i")
 

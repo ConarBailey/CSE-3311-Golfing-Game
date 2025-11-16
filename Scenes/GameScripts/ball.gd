@@ -18,21 +18,19 @@ var prevforce = Vector2(0,0)
 var TimerEnable = true
 var StrokesTotal = [0,0,0,0,0,0,0,0,0]
 var spawn_position
-var HoleInfo
-var CameraInfo
-var HolePars
 var is_aiming = false
 var aim_start_pos = Vector2.ZERO
 var aim_current_pos = Vector2.ZERO
 var aim_line
+@onready var HoleInfo = get_node("Holes").get_children()
+@onready var CameraInfo = get_node("CameraPositions").get_children()
+@onready var HolePars = $Holes.HolePars
 
 func _ready():
 	spawn_position = global_position  
 	aim_line = $AimLine
 	aim_line.clear_points()
-	HoleInfo = get_node("Holes").get_children()
-	CameraInfo = get_node("CameraPositions").get_children()
-	HolePars = $Holes.HolePars
+	updateText.emit("Hole " + str(currentHole) + "\nPar - "+ str(HolePars[currentHole-1]) + "\nStrokes - 0")
 
 func _physics_process(_delta: float) -> void:
 	if linear_velocity.length() < 10:
@@ -123,7 +121,7 @@ func _on_holes_body_entered(body: Node2D) -> void:
 			for i in StrokesTotal:
 				sum += i
 			updateText.emit("Level Pack\n Complete!\nTotal Strokes\n" + str(sum))
-			#endGame.emit(StrokesTotal)
+			endGame.emit(StrokesTotal)
 		else:
 			StrokesTotal[currentHole-1] = strokes
 			_moveBallTo(HoleInfo[currentHole])
