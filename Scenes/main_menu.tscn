@@ -7,7 +7,7 @@
 [ext_resource type="PackedScene" uid="uid://cg4gnar65v0u6" path="res://Scenes/settings_panel.tscn" id="4_mc4e6"]
 [ext_resource type="Texture2D" uid="uid://lj5qyuohoh4b" path="res://Assets/hill-backdrop.png" id="5_cp0ys"]
 [ext_resource type="Script" uid="uid://dwqumcvq2toky" path="res://Systems/Scripts/text.gd" id="5_yhxw7"]
-[ext_resource type="Script" uid="uid://bsxvs2avn3koy" path="res://Scenes/level_selector_script.gd" id="6_yhxw7"]
+[ext_resource type="Script" uid="uid://bsxvs2avn3koy" path="res://Scenes/GameScripts/level_selector_script.gd" id="6_yhxw7"]
 
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_cp0ys"]
 draw_center = false

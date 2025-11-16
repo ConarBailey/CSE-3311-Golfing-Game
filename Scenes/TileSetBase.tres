@@ -1,6 +1,6 @@
 [gd_resource type="TileSet" load_steps=4 format=3 uid="uid://befm60u0hg213"]
 
-[ext_resource type="PhysicsMaterial" uid="uid://mapb357dkdpi" path="res://Scenes/basic.tres" id="1_1s8hn"]
+[ext_resource type="PhysicsMaterial" uid="uid://mapb357dkdpi" path="res://Scenes/Physics Materials/basic.tres" id="1_1s8hn"]
 [ext_resource type="Texture2D" uid="uid://qagklr18ino5" path="res://Assets/world_tileset.png" id="1_dq8ym"]
 
 [sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_c8y3w"]
@@ -299,6 +299,8 @@ texture = ExtResource("1_dq8ym")
 11:8/0 = 0
 10:8/0 = 0
 9:7/0 = 0
+3:3/0 = 0
+4:3/0 = 0
 
 [resource]
 physics_layer_0/collision_layer = 1

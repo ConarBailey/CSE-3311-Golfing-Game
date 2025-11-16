@@ -1,19 +1,20 @@
-[gd_scene load_steps=21 format=4 uid="uid://b27lo00t7l6c"]
+[gd_scene load_steps=22 format=4 uid="uid://b27lo00t7l6c"]
 
-[ext_resource type="Script" uid="uid://ciesjqf60i3r1" path="res://Scenes/game_script.gd" id="1_ahq5a"]
+[ext_resource type="Script" uid="uid://ciesjqf60i3r1" path="res://Scenes/GameScripts/game_script.gd" id="1_ahq5a"]
 [ext_resource type="Texture2D" uid="uid://d2ejbrslnck1b" path="res://Assets/pause-button.png" id="2_h606a"]
 [ext_resource type="Script" uid="uid://d4na4m7sjaxg3" path="res://Systems/pause_menu.gd" id="3_xkql2"]
 [ext_resource type="Theme" uid="uid://m68oylcsqvn" path="res://UI/main_panel_buttons.tres" id="4_jncii"]
 [ext_resource type="PackedScene" uid="uid://cg4gnar65v0u6" path="res://Scenes/settings_panel.tscn" id="5_yjpx4"]
-[ext_resource type="Script" uid="uid://byd3yobpdyute" path="res://Scenes/hole_info.gd" id="6_6rct3"]
+[ext_resource type="Script" uid="uid://byd3yobpdyute" path="res://Scenes/GameScripts/hole_info.gd" id="6_6rct3"]
 [ext_resource type="TileSet" uid="uid://befm60u0hg213" path="res://Scenes/TileSetBase.tres" id="7_8ccln"]
-[ext_resource type="PhysicsMaterial" uid="uid://bo1ubqo5cuk7a" path="res://Scenes/ball.tres" id="8_5iwem"]
-[ext_resource type="PhysicsMaterial" uid="uid://73tfecnswsk2" path="res://Scenes/level2terrainmat.tres" id="8_bl0du"]
-[ext_resource type="Script" uid="uid://k4s7nuowyk7r" path="res://Scenes/ballL2.gd" id="9_50et7"]
+[ext_resource type="PhysicsMaterial" uid="uid://bo1ubqo5cuk7a" path="res://Scenes/Physics Materials/ball.tres" id="8_5iwem"]
+[ext_resource type="PhysicsMaterial" uid="uid://73tfecnswsk2" path="res://Scenes/Physics Materials/level2terrainmat.tres" id="8_bl0du"]
 [ext_resource type="Texture2D" uid="uid://qagklr18ino5" path="res://Assets/world_tileset.png" id="9_q0ycs"]
 [ext_resource type="Texture2D" uid="uid://bg6f1q7q4icfu" path="res://Assets/golfball2.png" id="10_r4f0q"]
-[ext_resource type="Script" uid="uid://ckd3uf13tverm" path="res://Scenes/timer.gd" id="11_6srrj"]
-[ext_resource type="Script" uid="uid://dul0006d7vrtm" path="res://Scenes/hole_1.gd" id="12_yetpc"]
+[ext_resource type="Script" uid="uid://ckd3uf13tverm" path="res://Scenes/GameScripts/timer.gd" id="11_6srrj"]
+[ext_resource type="Script" uid="uid://bk114bgslvjm5" path="res://Scenes/GameScripts/ball.gd" id="11_q0ycs"]
+[ext_resource type="Script" uid="uid://dul0006d7vrtm" path="res://Scenes/GameScripts/Camera.gd" id="12_yetpc"]
+[ext_resource type="Script" uid="uid://dwtpb4w34aaeu" path="res://Scenes/GameScripts/holes.gd" id="14_hj5x7"]
 
 [sub_resource type="Theme" id="Theme_66tft"]
 Label/font_sizes/font_size = 60
@@ -21,7 +22,7 @@ Label/font_sizes/font_size = 60
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_c8y3w"]
 size = Vector2(2487.8125, 2111.848)
 
-[sub_resource type="SegmentShape2D" id="SegmentShape2D_njln1"]
+[sub_resource type="SegmentShape2D" id="SegmentShape2D_yvrk7"]
 a = Vector2(-30, 41)
 b = Vector2(32, 41)
 
@@ -504,60 +505,44 @@ z_index = -1
 position = Vector2(19533, -120)
 shape = SubResource("RectangleShape2D_c8y3w")
 
-[node name="Hole1" type="Area2D" parent="Bounds"]
-position = Vector2(1312, 582)
+[node name="Holes" type="Area2D" parent="Bounds"]
+position = Vector2(-160, 130)
 
-[node name="Hole1" type="CollisionShape2D" parent="Bounds/Hole1"]
-shape = SubResource("SegmentShape2D_njln1")
+[node name="Hole1" type="CollisionShape2D" parent="Bounds/Holes"]
+position = Vector2(1471, 452)
+shape = SubResource("SegmentShape2D_yvrk7")
 
-[node name="Hole2" type="Area2D" parent="Bounds"]
-position = Vector2(4127, 580)
+[node name="Hole2" type="CollisionShape2D" parent="Bounds/Holes"]
+position = Vector2(4287, 450)
+shape = SubResource("SegmentShape2D_yvrk7")
 
-[node name="Hole2" type="CollisionShape2D" parent="Bounds/Hole2"]
-shape = SubResource("SegmentShape2D_njln1")
+[node name="Hole3" type="CollisionShape2D" parent="Bounds/Holes"]
+position = Vector2(6911, 517)
+shape = SubResource("SegmentShape2D_yvrk7")
 
-[node name="Hole3" type="Area2D" parent="Bounds"]
-position = Vector2(6751, 643)
+[node name="Hole4" type="CollisionShape2D" parent="Bounds/Holes"]
+position = Vector2(9536, 133)
+shape = SubResource("SegmentShape2D_yvrk7")
 
-[node name="Hole3" type="CollisionShape2D" parent="Bounds/Hole3"]
-shape = SubResource("SegmentShape2D_njln1")
+[node name="Hole5" type="CollisionShape2D" parent="Bounds/Holes"]
+position = Vector2(12160, -123)
+shape = SubResource("SegmentShape2D_yvrk7")
 
-[node name="Hole4" type="Area2D" parent="Bounds"]
-position = Vector2(9378, 260)
+[node name="Hole6" type="CollisionShape2D" parent="Bounds/Holes"]
+position = Vector2(14848, 386)
+shape = SubResource("SegmentShape2D_yvrk7")
 
-[node name="Hole4" type="CollisionShape2D" parent="Bounds/Hole4"]
-shape = SubResource("SegmentShape2D_njln1")
+[node name="Hole7" type="CollisionShape2D" parent="Bounds/Holes"]
+position = Vector2(16384, -123)
+shape = SubResource("SegmentShape2D_yvrk7")
 
-[node name="Hole5" type="Area2D" parent="Bounds"]
-position = Vector2(11999, 5)
+[node name="Hole8" type="CollisionShape2D" parent="Bounds/Holes"]
+position = Vector2(19650, 4)
+shape = SubResource("SegmentShape2D_yvrk7")
 
-[node name="Hole5" type="CollisionShape2D" parent="Bounds/Hole5"]
-shape = SubResource("SegmentShape2D_njln1")
-
-[node name="Hole6" type="Area2D" parent="Bounds"]
-position = Vector2(14688, 517)
-
-[node name="Hole6" type="CollisionShape2D" parent="Bounds/Hole6"]
-shape = SubResource("SegmentShape2D_njln1")
-
-[node name="Hole7" type="Area2D" parent="Bounds"]
-position = Vector2(16672, 3)
-
-[node name="Hole7" type="CollisionShape2D" parent="Bounds/Hole7"]
-position = Vector2(-451, 5)
-shape = SubResource("SegmentShape2D_njln1")
-
-[node name="Hole8" type="Area2D" parent="Bounds"]
-position = Vector2(19489, 138)
-
-[node name="Hole8" type="CollisionShape2D" parent="Bounds/Hole8"]
-shape = SubResource("SegmentShape2D_njln1")
-
-[node name="Hole9" type="Area2D" parent="Bounds"]
-position = Vector2(22431, 518)
-
-[node name="Hole9" type="CollisionShape2D" parent="Bounds/Hole9"]
-shape = SubResource("SegmentShape2D_njln1")
+[node name="Hole9" type="CollisionShape2D" parent="Bounds/Holes"]
+position = Vector2(22592, 388)
+shape = SubResource("SegmentShape2D_yvrk7")
 
 [node name="Tileset" type="Node" parent="."]
 
@@ -594,7 +579,7 @@ tile_set = ExtResource("7_8ccln")
 [node name="Ball" type="RigidBody2D" parent="."]
 position = Vector2(-422, 415)
 physics_material_override = ExtResource("8_5iwem")
-script = ExtResource("9_50et7")
+script = ExtResource("11_q0ycs")
 speed = 500
 
 [node name="AimLine" type="Line2D" parent="Ball"]
@@ -612,6 +597,65 @@ texture = ExtResource("10_r4f0q")
 wait_time = 0.5
 script = ExtResource("11_6srrj")
 
+[node name="Holes" type="Node" parent="Ball"]
+script = ExtResource("14_hj5x7")
+
+[node name="Hole1" type="Node2D" parent="Ball/Holes"]
+position = Vector2(-422, 415)
+
+[node name="Hole2" type="Node2D" parent="Ball/Holes"]
+position = Vector2(2082, 350)
+
+[node name="Hole3" type="Node2D" parent="Ball/Holes"]
+position = Vector2(4768, 536)
+
+[node name="Hole4" type="Node2D" parent="Ball/Holes"]
+position = Vector2(7232, 30)
+
+[node name="Hole5" type="Node2D" parent="Ball/Holes"]
+position = Vector2(9890, 35)
+
+[node name="Hole6" type="Node2D" parent="Ball/Holes"]
+position = Vector2(12578, 545)
+
+[node name="Hole7" type="Node2D" parent="Ball/Holes"]
+position = Vector2(15136, 417)
+
+[node name="Hole8" type="Node2D" parent="Ball/Holes"]
+position = Vector2(17760, 481)
+
+[node name="Hole9" type="Node2D" parent="Ball/Holes"]
+position = Vector2(20387, 470)
+
+[node name="CameraPositions" type="Node" parent="Ball"]
+
+[node name="H1" type="Node2D" parent="Ball/CameraPositions"]
+position = Vector2(608, 290)
+
+[node name="H2" type="Node2D" parent="Ball/CameraPositions"]
+position = Vector2(3135, 290)
+
+[node name="H3" type="Node2D" parent="Ball/CameraPositions"]
+position = Vector2(5725, 290)
+
+[node name="H4" type="Node2D" parent="Ball/CameraPositions"]
+position = Vector2(8350, 290)
+
+[node name="H5" type="Node2D" parent="Ball/CameraPositions"]
+position = Vector2(10975, 290)
+
+[node name="H6" type="Node2D" parent="Ball/CameraPositions"]
+position = Vector2(13600, 290)
+
+[node name="H7" type="Node2D" parent="Ball/CameraPositions"]
+position = Vector2(16220, 290)
+
+[node name="H8" type="Node2D" parent="Ball/CameraPositions"]
+position = Vector2(18825, 290)
+
+[node name="H9" type="Node2D" parent="Ball/CameraPositions"]
+position = Vector2(21475, 290)
+
 [node name="Camera" type="Camera2D" parent="."]
 position = Vector2(608, 286)
 script = ExtResource("12_yetpc")
@@ -622,15 +666,7 @@ script = ExtResource("12_yetpc")
 [connection signal="pressed" from="UI/PauseMenu/PausePanel/VBoxContainer/MainMenu" to="UI/PauseMenu" method="_on_main_menu_pressed"]
 [connection signal="pressed" from="UI/PauseMenu/SettingsPanel/CloseSettings" to="UI/PauseMenu" method="_on_close_settings_pressed"]
 [connection signal="body_exited" from="Bounds/Right" to="Ball" method="_on_right_body_exited"]
-[connection signal="body_entered" from="Bounds/Hole1" to="Ball" method="_on_hole_1_body_entered"]
-[connection signal="body_entered" from="Bounds/Hole2" to="Ball" method="_on_hole_2_body_entered"]
-[connection signal="body_entered" from="Bounds/Hole3" to="Ball" method="_on_hole_3_body_entered"]
-[connection signal="body_entered" from="Bounds/Hole4" to="Ball" method="_on_hole_4_body_entered"]
-[connection signal="body_entered" from="Bounds/Hole5" to="Ball" method="_on_hole_5_body_entered"]
-[connection signal="body_entered" from="Bounds/Hole6" to="Ball" method="_on_hole_6_body_entered"]
-[connection signal="body_entered" from="Bounds/Hole7" to="Ball" method="_on_hole_7_body_entered"]
-[connection signal="body_entered" from="Bounds/Hole8" to="Ball" method="_on_hole_8_body_entered"]
-[connection signal="body_entered" from="Bounds/Hole9" to="Ball" method="_on_hole_9_body_entered"]
+[connection signal="body_entered" from="Bounds/Holes" to="Ball" method="_on_holes_body_entered"]
 [connection signal="cameraChange" from="Ball" to="Camera" method="_on_ball_camera_change"]
 [connection signal="strokesChange" from="Ball" to="UI/HoleInfo" method="_on_ball_strokes_change"]
 [connection signal="time" from="Ball" to="Ball/Timer" method="_on_ball_time"]
