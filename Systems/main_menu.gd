@@ -22,8 +22,6 @@ func close_panel() -> void:
 func _on_play_pressed() -> void:
 	show_panel(level_selector_panel)
 	
-
-
 func _on_settings_pressed() -> void:
 	show_panel(settings_panel)
 

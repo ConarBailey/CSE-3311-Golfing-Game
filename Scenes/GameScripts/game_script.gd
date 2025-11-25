@@ -8,16 +8,25 @@ var user_score
 var user_score_value
 var level: String
 
+const LEVEL_NAME_MAP = {
+	"level_1": "Level 1 - Bumpy Plains",
+	"level_2": "Level 2 - Fungal Forest",
+	"level_3": "Level 3 - The Grand Desert",
+	"level_E": "Level EX - The Laboratory"
+}
+
 var LevelPars = {
-	"Level 1": [3, 5, 4, 5, 6, 6, 10, 6, 6],
-	"Level 2": [3, 5, 4, 5, 6, 6, 10, 6, 6],
+	"Level 1 - Bumpy Plains": [3, 5, 4, 5, 6, 6, 10, 6, 6],
+	"Level 2 - Fungal Forest": [3, 5, 4, 5, 6, 6, 10, 6, 6],
+	"Level 3 - The Grand Desert": [3, 3, 3, 3, 3, 3, 3, 3, 3],
+	"Level EX - The Laboratory": [3, 3, 3, 3, 3, 3, 3, 3, 3],
 }
 
 const LEVEL_SCENES = {
-	"Level 1": "res://Scenes/level_1.tscn",
-	"Level 2": "res://Scenes/level_2.tscn",
-	"Level 3": "res://Scenes/level_3.tscn",
-	"Level E": "res://Scenes/level_E.tscn",
+	"Level 1 - Bumpy Plains": "res://Scenes/level_1.tscn",
+	"Level 2 - Fungal Forest": "res://Scenes/level_2.tscn",
+	"Level 3 - The Grand Desert": "res://Scenes/level_3.tscn",
+	"Level EX - The Laboratory": "res://Scenes/level_E.tscn",
 }
 
 func _ready() -> void:
@@ -25,12 +34,9 @@ func _ready() -> void:
 
 func _get_current_level_name() -> String:
 	var file_name = get_tree().current_scene.scene_file_path.get_file().get_basename()
-	var parts = file_name.split("_") 
-	if parts.size() > 1:
-		var num_text = parts[1]
-		return "Level " + num_text
+	if LEVEL_NAME_MAP.has(file_name):
+		return LEVEL_NAME_MAP[file_name]
 	return "Unknown Level"
-
 
 func _on_ball_end_game(stroke_totals: Array):
 	var hole_pars = LevelPars.get(level, [])
@@ -44,7 +50,8 @@ func _on_ball_end_game(stroke_totals: Array):
 		
 	user_score_value = total_strokes - total_par
 	user_score = str(total_strokes) + "/" + str(total_par)
-
+	
+	SaveManager.save_score(level, user_score)
 	end_game_menu.end_game(stroke_totals, hole_pars, user_score)
 
 func _next_level():

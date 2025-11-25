@@ -10,13 +10,18 @@ const LEVELS = {
 @onready var level_container: VBoxContainer = $LevelContainer 
 @onready var dummy_button: Button = $LevelContainer/StarterButton
 
+
 func _ready() -> void:
 	hide()
 	dummy_button.queue_free()
-	
+	SaveManager.load_scores()
+
 	for level_name in LEVELS.keys():
 		var btn := Button.new()
-		btn.text = level_name
+
+		var score = SaveManager.scores.get(level_name, "N/A")
+		btn.text = "%s   |   Score: %s" % [level_name, str(score)]
+		
 		btn.add_theme_font_size_override("font_size", 40)
 		btn.custom_minimum_size = Vector2(200, 100)
 		level_container.add_child(btn)
