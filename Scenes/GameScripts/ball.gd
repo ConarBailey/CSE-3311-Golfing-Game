@@ -29,7 +29,7 @@ var aim_line
 
 func _ready():
 	if get_tree().current_scene.scene_file_path.get_file().get_basename() == "level_4":
-		maxforce = 70000 * 3
+		gravity_scale = 1
 	else:
 		maxforce = 70000
 	spawn_position = global_position  
