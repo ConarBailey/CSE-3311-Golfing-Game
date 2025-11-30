@@ -8,6 +8,7 @@ signal endGame(scoreInfo)
 
 @export var speed = 1000
 @export var shotEnable = 5
+
 @export var maxforce = 70000
 var currentHole = 1
 var strokes = 0
@@ -27,6 +28,10 @@ var aim_line
 @onready var HolePars = $Holes.HolePars
 
 func _ready():
+	if get_tree().current_scene.scene_file_path.get_file().get_basename() == "level_4":
+		gravity_scale = 1
+	else:
+		maxforce = 70000
 	spawn_position = global_position  
 	aim_line = $AimLine
 	aim_line.clear_points()
