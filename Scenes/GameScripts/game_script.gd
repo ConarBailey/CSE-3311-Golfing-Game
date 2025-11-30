@@ -8,10 +8,12 @@ var user_score
 var user_score_value
 var level: String
 
+
 const LEVEL_NAME_MAP = {
 	"level_1": "Level 1 - Bumpy Plains",
 	"level_2": "Level 2 - Fungal Forest",
 	"level_3": "Level 3 - The Grand Desert",
+	"level_4": "Level 4 - Underworld",
 	"level_E": "Level EX - The Laboratory"
 }
 
@@ -19,6 +21,7 @@ var LevelPars = {
 	"Level 1 - Bumpy Plains": [3, 5, 4, 5, 6, 6, 10, 6, 6],
 	"Level 2 - Fungal Forest": [3, 5, 4, 5, 6, 6, 10, 6, 6],
 	"Level 3 - The Grand Desert": [3, 3, 3, 3, 3, 3, 3, 3, 3],
+	"Level 4 - Underworld": [3, 2, 2, 1, 1, 2, 4, 3, 3],
 	"Level EX - The Laboratory": [3, 3, 3, 3, 3, 3, 3, 3, 3],
 }
 
@@ -26,6 +29,7 @@ const LEVEL_SCENES = {
 	"Level 1 - Bumpy Plains": "res://Scenes/level_1.tscn",
 	"Level 2 - Fungal Forest": "res://Scenes/level_2.tscn",
 	"Level 3 - The Grand Desert": "res://Scenes/level_3.tscn",
+	"Level 4 - Underworld": "res://Scenes/level_4.tscn",
 	"Level EX - The Laboratory": "res://Scenes/level_E.tscn",
 }
 
