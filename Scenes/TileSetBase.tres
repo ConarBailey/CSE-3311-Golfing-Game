@@ -1,10 +1,7 @@
 [gd_resource type="TileSet" load_steps=4 format=3 uid="uid://befm60u0hg213"]
 
+[ext_resource type="PhysicsMaterial" uid="uid://mapb357dkdpi" path="res://Scenes/Physics Materials/basic.tres" id="1_1s8hn"]
 [ext_resource type="Texture2D" uid="uid://qagklr18ino5" path="res://Assets/world_tileset.png" id="1_dq8ym"]
-
-[sub_resource type="PhysicsMaterial" id="PhysicsMaterial_dq8ym"]
-friction = 0.5
-bounce = 0.9
 
 [sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_c8y3w"]
 texture = ExtResource("1_dq8ym")
@@ -307,5 +304,5 @@ texture = ExtResource("1_dq8ym")
 
 [resource]
 physics_layer_0/collision_layer = 1
-physics_layer_0/physics_material = SubResource("PhysicsMaterial_dq8ym")
+physics_layer_0/physics_material = ExtResource("1_1s8hn")
 sources/0 = SubResource("TileSetAtlasSource_c8y3w")

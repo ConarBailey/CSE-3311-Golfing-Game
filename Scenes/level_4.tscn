@@ -1,6 +1,7 @@
-[gd_scene load_steps=28 format=4 uid="uid://qisyvj8bnpdr"]
+[gd_scene load_steps=29 format=4 uid="uid://qisyvj8bnpdr"]
 
 [ext_resource type="Texture2D" uid="uid://d2ejbrslnck1b" path="res://Assets/pause-button.png" id="1_b8ytw"]
+[ext_resource type="Script" uid="uid://ciesjqf60i3r1" path="res://Scenes/GameScripts/game_script.gd" id="1_mbnb1"]
 [ext_resource type="Script" uid="uid://byd3yobpdyute" path="res://Scenes/GameScripts/hole_info.gd" id="2_mbnb1"]
 [ext_resource type="Script" uid="uid://d4na4m7sjaxg3" path="res://Systems/pause_menu.gd" id="3_cxe20"]
 [ext_resource type="Theme" uid="uid://m68oylcsqvn" path="res://UI/main_panel_buttons.tres" id="4_fmsuk"]
@@ -661,6 +662,7 @@ sources/0 = SubResource("TileSetAtlasSource_cxe20")
 radius = 10.6667
 
 [node name="Node2D" type="Node2D"]
+script = ExtResource("1_mbnb1")
 
 [node name="UI" type="CanvasLayer" parent="."]
 
@@ -870,11 +872,6 @@ layout_mode = 2
 theme = ExtResource("4_fmsuk")
 text = "Next Level"
 
-[node name="Leaderboard" type="Button" parent="UI/EndGameMenu/Panel/VBoxContainer"]
-layout_mode = 2
-theme = ExtResource("4_fmsuk")
-text = "Leaderboard"
-
 [node name="MainMenu" type="Button" parent="UI/EndGameMenu/Panel/VBoxContainer"]
 layout_mode = 2
 theme = ExtResource("4_fmsuk")
@@ -1030,6 +1027,7 @@ script = ExtResource("14_6vef0")
 
 [node name="Holes" type="Node" parent="Ball"]
 script = ExtResource("15_glsh0")
+HolePars = [4, 4, 3, 3, 3, 4, 4, 4, 6]
 
 [node name="Hole1" type="Node2D" parent="Ball/Holes"]
 position = Vector2(-408, 489)
@@ -1097,11 +1095,11 @@ script = ExtResource("16_j11ov")
 [connection signal="pressed" from="UI/PauseMenu/PausePanel/VBoxContainer/MainMenu" to="UI/PauseMenu" method="_on_main_menu_pressed"]
 [connection signal="pressed" from="UI/PauseMenu/SettingsPanel/CloseSettings" to="UI/PauseMenu" method="_on_close_settings_pressed"]
 [connection signal="pressed" from="UI/EndGameMenu/Panel/VBoxContainer/NextLevel" to="UI/EndGameMenu" method="_on_next_level_pressed"]
-[connection signal="pressed" from="UI/EndGameMenu/Panel/VBoxContainer/Leaderboard" to="UI/EndGameMenu" method="_on_leaderboard_pressed"]
 [connection signal="pressed" from="UI/EndGameMenu/Panel/VBoxContainer/MainMenu" to="UI/EndGameMenu" method="_on_main_menu_pressed"]
 [connection signal="body_exited" from="Bounds/Right" to="Ball" method="_on_right_body_exited"]
 [connection signal="body_entered" from="Bounds/Holes" to="Ball" method="_on_holes_body_entered"]
 [connection signal="cameraChange" from="Ball" to="Camera" method="_on_ball_camera_change"]
+[connection signal="endGame" from="Ball" to="." method="_on_ball_end_game"]
 [connection signal="strokesChange" from="Ball" to="UI/HoleInfo" method="_on_ball_strokes_change"]
 [connection signal="time" from="Ball" to="Ball/Timer" method="_on_ball_time"]
 [connection signal="updateText" from="Ball" to="UI/HoleInfo" method="_on_ball_update_text"]

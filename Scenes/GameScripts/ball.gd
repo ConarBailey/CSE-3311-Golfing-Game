@@ -23,13 +23,14 @@ var is_aiming = false
 var aim_start_pos = Vector2.ZERO
 var aim_current_pos = Vector2.ZERO
 var aim_line
+var holestotal = 9
 @onready var HoleInfo = get_node("Holes").get_children()
 @onready var CameraInfo = get_node("CameraPositions").get_children()
 @onready var HolePars = $Holes.HolePars
 
 func _ready():
-	if get_tree().current_scene.scene_file_path.get_file().get_basename() == "level_4":
-		gravity_scale = 1
+	if get_tree().current_scene.scene_file_path.get_file().get_basename() == "level_E":
+		holestotal = 3
 	else:
 		maxforce = 70000
 	spawn_position = global_position  
@@ -120,7 +121,7 @@ func _on_timer_timeout() -> void:
 		
 func _on_holes_body_entered(body: Node2D) -> void:
 	if(body is RigidBody2D):
-		if(currentHole == 9):
+		if(currentHole == holestotal):
 			StrokesTotal[8] = strokes
 			var sum = 0
 			for i in StrokesTotal:

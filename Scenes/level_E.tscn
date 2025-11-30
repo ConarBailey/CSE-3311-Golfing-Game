@@ -32,7 +32,7 @@ size = Vector2(2475, 1971)
 [sub_resource type="CircleShape2D" id="CircleShape2D_187gu"]
 radius = 10.6666565
 
-[node name="Node2D" type="Node2D"]
+[node name="Node2D2" type="Node2D"]
 script = ExtResource("1_yf48w")
 
 [node name="UI" type="CanvasLayer" parent="."]
@@ -71,7 +71,6 @@ script = ExtResource("3_w0yka")
 
 [node name="PauseMenu" type="Control" parent="UI"]
 process_mode = 3
-visible = false
 layout_mode = 3
 anchors_preset = 15
 anchor_right = 1.0
@@ -146,7 +145,6 @@ layout_mode = 1
 
 [node name="EndGameMenu" type="Control" parent="UI"]
 process_mode = 3
-visible = false
 layout_mode = 3
 anchors_preset = 15
 anchor_right = 1.0
@@ -244,11 +242,6 @@ alignment = 1
 layout_mode = 2
 theme = ExtResource("5_w8wn1")
 text = "Next Level"
-
-[node name="Leaderboard" type="Button" parent="UI/EndGameMenu/Panel/VBoxContainer"]
-layout_mode = 2
-theme = ExtResource("5_w8wn1")
-text = "Leaderboard"
 
 [node name="MainMenu" type="Button" parent="UI/EndGameMenu/Panel/VBoxContainer"]
 layout_mode = 2
@@ -511,7 +504,7 @@ collision_enabled = false
 [node name="TileBacks" type="TileMapLayer" parent="Tileset"]
 z_index = -1
 scale = Vector2(4, 4)
-tile_map_data = PackedByteArray("AAAEAAYAAAAKAAcAAAAEAAcAAAAKAAcAAAAEAAgAAAAKAAcAAAAXAAYAAAALAAYAAAAXAAcAAAALAAYAAAAXAAgAAAALAAYAAAAXAP7/AAALAAcAAAAXAP//AAALAAcAAAAXAAAAAAALAAcAAAAEAP7/AAAJAAcAAAAEAP//AAAJAAcAAAAEAAAAAAAJAAcAAAD1//v/AAAJAAgAAAD9/wAAAAAPAAAAAAD9/wEAAAAPAAEAAAAlAAYAAAAGAAoAAAAlAAcAAAAGAAoAAAAlAAgAAAAGAAoAAAAlAAkAAAAGAAoAAAAlAAoAAAAGAAoAAAAmAAoAAAAGAAoAAAAnAAoAAAAGAAoAAAApAAgAAAAGAAoAAAAqAAgAAAAGAAoAAAArAAgAAAAGAAoAAAAtAAcAAAAGAAoAAAAuAAYAAAAGAAoAAAAvAAYAAAAGAAoAAAAwAAcAAAAGAAoAAAAvAAgAAAAGAAoAAAAuAAkAAAAGAAoAAAAtAAoAAAAGAAoAAAAuAAoAAAAGAAoAAAAvAAoAAAAGAAoAAAAwAAoAAAAGAAoAAAAnAAcAAAAKAAcAAABAAAcAAAALAAYAAAA5AAEAAAALAAcAAABKAAAAAAAFAAoAAABoAAAAAAAFAAoAAAAhAAEAAAALAAYAAAA=")
+tile_map_data = PackedByteArray("AAAEAAYAAAAKAAcAAAAEAAcAAAAKAAcAAAAEAAgAAAAKAAcAAAAXAAYAAAALAAYAAAAXAAcAAAALAAYAAAAXAAgAAAALAAYAAAAXAP7/AAALAAcAAAAXAP//AAALAAcAAAAXAAAAAAALAAcAAAAEAP7/AAAJAAcAAAAEAP//AAAJAAcAAAAEAAAAAAAJAAcAAAD1//v/AAAJAAgAAAD9/wAAAAAPAAAAAAD9/wEAAAAPAAEAAAAlAAYAAAAGAAoAAAAlAAcAAAAGAAoAAAAlAAgAAAAGAAoAAAAlAAkAAAAGAAoAAAAlAAoAAAAGAAoAAAAmAAoAAAAGAAoAAAAnAAoAAAAGAAoAAAApAAgAAAAGAAoAAAAqAAgAAAAGAAoAAAArAAgAAAAGAAoAAAAtAAcAAAAGAAoAAAAuAAYAAAAGAAoAAAAvAAYAAAAGAAoAAAAwAAcAAAAGAAoAAAAvAAgAAAAGAAoAAAAuAAkAAAAGAAoAAAAtAAoAAAAGAAoAAAAuAAoAAAAGAAoAAAAvAAoAAAAGAAoAAAAwAAoAAAAGAAoAAAAnAAcAAAAKAAcAAABAAAcAAAALAAYAAAA5AAEAAAALAAcAAABKAAAAAAAFAAoAAABoAAAAAAAFAAoAAAAhAAEAAAALAAYAAABRAAQAAAAGAAoAAABRAAUAAAAGAAoAAABRAAYAAAAGAAoAAABRAAcAAAAGAAoAAABRAAgAAAAGAAoAAABSAAgAAAAGAAoAAABTAAgAAAAGAAoAAABVAAYAAAAGAAoAAABWAAYAAAAGAAoAAABYAAQAAAAGAAoAAABZAAQAAAAGAAoAAABaAAQAAAAGAAoAAABaAAUAAAAGAAoAAABaAAYAAAAGAAoAAABZAAYAAAAGAAoAAABaAAcAAAAGAAoAAABaAAgAAAAGAAoAAABZAAgAAAAGAAoAAABYAAgAAAAGAAoAAAA=")
 tile_set = ExtResource("9_2baoj")
 
 [node name="Tile" type="TileMapLayer" parent="Tileset"]
@@ -575,6 +568,7 @@ script = ExtResource("13_ju5xy")
 
 [node name="Holes" type="Node" parent="Ball"]
 script = ExtResource("14_f55jj")
+HolePars = [3, 4, 6, 0, 0, 0, 0, 0, 0]
 
 [node name="Hole1" type="Node2D" parent="Ball/Holes"]
 position = Vector2(-416, 622)
@@ -642,7 +636,6 @@ script = ExtResource("14_kbt43")
 [connection signal="pressed" from="UI/PauseMenu/PausePanel/VBoxContainer/MainMenu" to="UI/PauseMenu" method="_on_main_menu_pressed"]
 [connection signal="pressed" from="UI/PauseMenu/SettingsPanel/CloseSettings" to="UI/PauseMenu" method="_on_close_settings_pressed"]
 [connection signal="pressed" from="UI/EndGameMenu/Panel/VBoxContainer/NextLevel" to="UI/EndGameMenu" method="_on_next_level_pressed"]
-[connection signal="pressed" from="UI/EndGameMenu/Panel/VBoxContainer/Leaderboard" to="UI/EndGameMenu" method="_on_leaderboard_pressed"]
 [connection signal="pressed" from="UI/EndGameMenu/Panel/VBoxContainer/MainMenu" to="UI/EndGameMenu" method="_on_main_menu_pressed"]
 [connection signal="body_entered" from="Bounds/Holes" to="Ball" method="_on_holes_body_entered"]
 [connection signal="body_exited" from="Bounds/Right" to="Ball" method="_on_right_body_exited"]
