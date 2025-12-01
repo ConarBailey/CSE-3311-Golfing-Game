@@ -14,7 +14,7 @@ const LEVEL_NAME_MAP = {
 	"level_2": "Level 2 - Fungal Forest",
 	"level_3": "Level 3 - The Grand Desert",
 	"level_4": "Level 4 - Frozen Underworld",
-	#"level_E": "Level EX - The Laboratory"
+	"level_E": "Level EX - The Laboratory"
 }
 
 var LevelPars = {
@@ -22,7 +22,7 @@ var LevelPars = {
 	"Level 2 - Fungal Forest": [2, 3, 3, 4, 3, 3, 4, 2, 4],
 	"Level 3 - The Grand Desert": [3, 3, 3, 3, 3, 4, 5, 4, 7],
 	"Level 4 - Frozen Underworld": [4, 4, 3, 3, 3, 4, 4, 4, 6],
-	#"Level EX - The Laboratory": [3, 4, 6, 0, 0, 0, 0, 0, 0],
+	"Level EX - The Laboratory": [3, 4, 6, 0, 0, 0, 0, 0, 0],
 }
 
 const LEVEL_SCENES = {
@@ -30,7 +30,7 @@ const LEVEL_SCENES = {
 	"Level 2": "res://Scenes/level_2.tscn",
 	"Level 3": "res://Scenes/level_3.tscn",
 	"Level 4": "res://Scenes/level_4.tscn",
-	#"Level EX": "res://Scenes/level_E.tscn",
+	"Level EX": "res://Scenes/level_E.tscn",
 }
 
 func _ready() -> void:

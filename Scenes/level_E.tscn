@@ -71,6 +71,7 @@ script = ExtResource("3_w0yka")
 
 [node name="PauseMenu" type="Control" parent="UI"]
 process_mode = 3
+visible = false
 layout_mode = 3
 anchors_preset = 15
 anchor_right = 1.0
@@ -145,6 +146,7 @@ layout_mode = 1
 
 [node name="EndGameMenu" type="Control" parent="UI"]
 process_mode = 3
+visible = false
 layout_mode = 3
 anchors_preset = 15
 anchor_right = 1.0

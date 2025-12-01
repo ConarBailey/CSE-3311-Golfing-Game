@@ -7,7 +7,7 @@ var scores = {
 	"Level 2 - Fungal Forest": "-",
 	"Level 3 - The Grand Desert": "-",
 	"Level 4 - Frozen Underworld": "-",
-	#"Level EX - The Laboratory": "-"
+	"Level EX - The Laboratory": "-"
 }
 
 func get_numeric_strokes(score_string: String) -> int:
