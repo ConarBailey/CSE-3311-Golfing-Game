@@ -4,6 +4,7 @@ extends Control
 @onready var score_results: Label = $Panel/ScoreResults
 @onready var leaderboard: Node2D = $Leaderboard
 @onready var game_control: Node2D = $"../.."
+@onready var next_level_button: Button = $Panel/VBoxContainer/NextLevel
 
 var score_text = ""
 
@@ -12,7 +13,7 @@ func _ready() -> void:
 	hide()
 
 
-func end_game(stroke_totals: Array, hole_pars: Array, user_score: String) -> void:
+func end_game(stroke_totals: Array, hole_pars: Array, user_score: String, is_game_finished) -> void:
 	self.show()
 	var total_strokes = 0
 	for s in stroke_totals:
@@ -32,9 +33,14 @@ func end_game(stroke_totals: Array, hole_pars: Array, user_score: String) -> voi
 		diff_text = "+%d over par" % diff
 	else:
 		diff_text = "%d under par" % abs(diff)
+	var final_display_text = "Final Score: %s (%s)" % [user_score, diff_text]
 
-	score_results.text = "Final Score: %s (%s)" % [user_score, diff_text]
-
+	if is_game_finished:
+		score_results.text = "GAME COMPLETE! \n" + final_display_text
+		next_level_button.hide()
+	else:
+		score_results.text = final_display_text
+		next_level_button.show()
 
 
 func _on_leaderboard_pressed() -> void:

@@ -7,14 +7,14 @@ extends Node2D
 var user_score
 var user_score_value
 var level: String
-
+var is_game_finished
 
 const LEVEL_NAME_MAP = {
 	"level_1": "Level 1 - Bumpy Plains",
 	"level_2": "Level 2 - Fungal Forest",
 	"level_3": "Level 3 - The Grand Desert",
 	"level_4": "Level 4 - Frozen Underworld",
-	"level_E": "Level EX - The Laboratory"
+	#"level_E": "Level EX - The Laboratory"
 }
 
 var LevelPars = {
@@ -22,15 +22,15 @@ var LevelPars = {
 	"Level 2 - Fungal Forest": [2, 3, 3, 4, 3, 3, 4, 2, 4],
 	"Level 3 - The Grand Desert": [3, 3, 3, 3, 3, 4, 5, 4, 7],
 	"Level 4 - Frozen Underworld": [4, 4, 3, 3, 3, 4, 4, 4, 6],
-	"Level EX - The Laboratory": [3, 4, 6, 0, 0, 0, 0, 0, 0],
+	#"Level EX - The Laboratory": [3, 4, 6, 0, 0, 0, 0, 0, 0],
 }
 
 const LEVEL_SCENES = {
-	"Level 1 - Bumpy Plains": "res://Scenes/level_1.tscn",
-	"Level 2 - Fungal Forest": "res://Scenes/level_2.tscn",
-	"Level 3 - The Grand Desert": "res://Scenes/level_3.tscn",
-	"Level 4 - Frozen Underworld": "res://Scenes/level_4.tscn",
-	"Level EX - The Laboratory": "res://Scenes/level_E.tscn",
+	"Level 1": "res://Scenes/level_1.tscn",
+	"Level 2": "res://Scenes/level_2.tscn",
+	"Level 3": "res://Scenes/level_3.tscn",
+	"Level 4": "res://Scenes/level_4.tscn",
+	#"Level EX": "res://Scenes/level_E.tscn",
 }
 
 func _ready() -> void:
@@ -44,7 +44,6 @@ func _get_current_level_name() -> String:
 
 func _on_ball_end_game(stroke_totals: Array):
 	var hole_pars = LevelPars.get(level, [])
-	print(hole_pars)
 	var total_strokes = 0
 	var total_par = 0
 
@@ -55,21 +54,27 @@ func _on_ball_end_game(stroke_totals: Array):
 	user_score_value = total_strokes - total_par
 	user_score = str(total_strokes) + "/" + str(total_par)
 	
-	SaveManager.save_score(level, user_score)
-	end_game_menu.end_game(stroke_totals, hole_pars, user_score)
+	var current_saved_score_string = SaveManager.get_level_score(level)
+	var current_highscore_strokes = SaveManager.get_numeric_strokes(current_saved_score_string)
+	
+	if total_strokes < current_highscore_strokes:
+		SaveManager.save_score(level, user_score)
+
+	if _get_level_index(level) == len(LEVEL_NAME_MAP):
+		is_game_finished = true
+		
+	end_game_menu.end_game(stroke_totals, hole_pars, user_score, is_game_finished)
 
 func _next_level():
 	var current_index = _get_level_index(level)
 	var next_level_name = "Level " + str(current_index + 1)
 	
-	print(next_level_name)
 	if LEVEL_SCENES.has(next_level_name):
 		var next_scene_path = LEVEL_SCENES[next_level_name]
 		var next_scene = load(next_scene_path)
 		if next_scene:
 			get_tree().change_scene_to_packed(next_scene)
-	else:
-		print("✅ No more levels available. Game complete!")
+		
 
 
 func _get_level_index(level_name: String) -> int:
